@@ -40,4 +40,6 @@ public class User extends Auditable<String> implements Serializable {
     private String address;
     private String phoneNumber;
     private Date dateOfBirth;
+
+    private boolean isActive;
 }
