@@ -1,24 +1,35 @@
 package com.pilgrims.travelagency.controllers;
 
-import com.pilgrims.travelagency.services.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.pilgrims.travelagency.models.User;
+import com.pilgrims.travelagency.services.implementations.UserServiceImpl;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controller to handle all user related requests
  *
  * @author Ott Pikk
  */
-@Controller
-@RequestMapping("/user")
+@RestController
+@CrossOrigin(origins = "http:://localhost:4200")
 public class UserController {
+    private UserServiceImpl userServiceImpl;
 
-    private UserService userService;
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userServiceImpl.findAllUsers();
+    }
 
-    public String showAllUserPage(Model model) {
-        model.addAttribute("user", userService.findAllUsers());
-        return "user/list-user";
+    @PostMapping("/users")
+    void addUser(@RequestBody User user) {
+        userServiceImpl.createUser(user);
     }
 
 }
+
+
+
+
+
+
