@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ import java.util.UUID;
 @Data
 @Entity
 @EqualsAndHashCode
-public class User {
+public class User extends Auditable<String> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
