@@ -39,7 +39,7 @@ public interface HotelService {
      * @param standard Standard
      * @return List of hotels
      */
-    List<Hotel> findHotelsByStandard(NameConverter.Standard standard);
+    List<Hotel> findHotelsByStandard(String standard);
 
     /**
      * To find a hotel by name
@@ -47,6 +47,19 @@ public interface HotelService {
      * @return Hotel
      */
     Hotel findHotelByName(String name);
+
+    /**
+     * To find a hotel by id
+     * @param id id
+     * @return hotel
+     */
+    Hotel findHotelById(UUID id);
+
+    /**
+     * To find all hotels
+     * @return List of hotels
+     */
+    List<Hotel> findAllHotels();
 
     /**
      * To update a existing Hotel

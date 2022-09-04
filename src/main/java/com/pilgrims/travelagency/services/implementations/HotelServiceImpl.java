@@ -7,6 +7,7 @@ import com.sun.xml.bind.api.impl.NameConverter;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -32,37 +33,54 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<Hotel> findHotelsByCity(City city) {
-        Optional<Hotel> optionalHotel = hotelRepository.findByCity(city);
-        return null;
+        return hotelRepository.findByCity(city);
     }
 
     @Override
     public List<Hotel> findHotelsByCountry(Country country) {
-        return null;
+        return hotelRepository.findByCountry(country);
     }
 
     @Override
-    public List<Hotel> findHotelsByStandard(NameConverter.Standard standard) {
-        return null;
+    public List<Hotel> findHotelsByStandard(String standard) {
+        return hotelRepository.findByStandard(standard);
     }
 
     @Override
     public Hotel findHotelByName(String name) {
-        return null;
+        Optional<Hotel> optionalHotel = hotelRepository.findByName(name);
+        return optionalHotel.get();
     }
 
     @Override
     public void editHotel(Hotel hotel) {
+        if (findHotelById(hotel.getId()) != null) {
+            hotelRepository.saveAndFlush(hotel);
+        }
+    }
 
+    public Hotel findHotelById (UUID id) {
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        return optionalHotel.get();
+    }
+
+    @Override
+    public List<Hotel> findAllHotels() {
+        return hotelRepository.findAll();
     }
 
     @Override
     public void deleteHotelById(UUID id) {
-
+        Hotel hotel = findHotelById(id);
+        hotel.setActive(false);
+        hotelRepository.saveAndFlush(hotel);
     }
 
     @Override
     public void restoreHotelById(UUID id) {
+        Hotel hotel = findHotelById(id);
+        hotel.setActive(true);
+        hotelRepository.saveAndFlush(hotel);
 
     }
 }

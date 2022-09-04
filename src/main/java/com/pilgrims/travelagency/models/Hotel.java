@@ -39,6 +39,12 @@ public class Hotel extends Auditable<String> implements Serializable {
     };
 
     private String description;
+
+    @ManyToMany
+    @JoinColumn(name = "cityId",
+                nullable = false,
+                referencedColumnName = "id",
+                foreignKey = @ForeignKey(name = "city_hotel_fk"))
     private City city;
 
     private boolean isActive;
