@@ -1,5 +1,7 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.models.City;
+import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
 import com.pilgrims.travelagency.repositories.HotelRepository;
 import com.pilgrims.travelagency.services.HotelService;
@@ -53,7 +55,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public void editHotel(Hotel hotel) {
+    public void updateHotel(Hotel hotel) {
         if (findHotelById(hotel.getId()) != null) {
             hotelRepository.saveAndFlush(hotel);
         }

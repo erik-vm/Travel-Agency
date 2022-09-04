@@ -1,5 +1,7 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.models.City;
+import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
 import com.sun.xml.bind.api.impl.NameConverter;
 
@@ -66,7 +68,7 @@ public interface HotelService {
      *
      * @param hotel Hotel
      */
-    void editHotel(Hotel hotel);
+    void updateHotel(Hotel hotel);
 
     /**
      * To delete a hotel by its ID
@@ -79,4 +81,6 @@ public interface HotelService {
      * @param id id of hotel
      */
     void restoreHotelById(UUID id);
+
+
 }
