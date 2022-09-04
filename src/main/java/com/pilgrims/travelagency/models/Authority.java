@@ -21,7 +21,7 @@ import java.util.UUID;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 public class Authority extends Auditable<String> implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")

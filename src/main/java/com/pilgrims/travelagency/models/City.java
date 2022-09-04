@@ -19,7 +19,7 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class City extends Auditable<String> implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -29,6 +29,5 @@ public class City extends Auditable<String> implements Serializable {
     private UUID id;
 
     private String name;
-
     private boolean isActive;
 }

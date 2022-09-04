@@ -3,6 +3,7 @@ package com.pilgrims.travelagency.services.implementations;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
+import com.pilgrims.travelagency.models.HotelStandard;
 import com.pilgrims.travelagency.repositories.HotelRepository;
 import com.pilgrims.travelagency.services.HotelService;
 import com.sun.xml.bind.api.impl.NameConverter;
@@ -38,14 +39,14 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.findByCity(city);
     }
 
-    @Override
+  /*  @Override
     public List<Hotel> findHotelsByCountry(Country country) {
         return hotelRepository.findByCountry(country);
-    }
+    } */
 
     @Override
-    public List<Hotel> findHotelsByStandard(String standard) {
-        return hotelRepository.findByStandard(standard);
+    public List<Hotel> findHotelsByStandard(HotelStandard hotelStandard) {
+        return hotelRepository.findByHotelStandard(hotelStandard);
     }
 
     @Override

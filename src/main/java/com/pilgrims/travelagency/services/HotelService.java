@@ -3,6 +3,7 @@ package com.pilgrims.travelagency.services;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
+import com.pilgrims.travelagency.models.HotelStandard;
 import com.sun.xml.bind.api.impl.NameConverter;
 
 import java.util.List;
@@ -34,14 +35,14 @@ public interface HotelService {
      * @param country Country
      * @return List of hotels
      */
-    List<Hotel> findHotelsByCountry(Country country);
+  //  List<Hotel> findHotelsByCountry(Country country);
 
     /**
      * To find a hotel by standard
-     * @param standard Standard
+     * @param hotelStandard Standard
      * @return List of hotels
      */
-    List<Hotel> findHotelsByStandard(String standard);
+    List<Hotel> findHotelsByStandard(HotelStandard hotelStandard);
 
     /**
      * To find a hotel by name

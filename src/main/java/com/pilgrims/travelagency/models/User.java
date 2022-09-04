@@ -7,7 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -36,7 +36,7 @@ public class User extends Auditable<String> implements Serializable {
     private String email;
     private String address;
     private String phoneNumber;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @OneToOne(cascade = CascadeType.MERGE)
     private Authority authority;

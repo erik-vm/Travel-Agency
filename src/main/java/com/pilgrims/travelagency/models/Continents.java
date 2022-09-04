@@ -17,21 +17,19 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Continents extends Auditable<String> implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(updatable = false, nullable = false)
     @Type(type = "org.hibernate.type.UUIDCharType")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-
     private UUID id;
+
     private String name;
 
-    @ManyToOne(mappedBy = "Continents")
-    public List <Country> countryList = new ArrayList<>();
-
-
+    @OneToOne(cascade = CascadeType.MERGE)
+    public Country country;
 
     private boolean isActive;
 }

@@ -28,6 +28,5 @@ public class Country extends Auditable<String> implements Serializable {
 
     private String name;
     private String description;
-
     private boolean isActive;
 }
