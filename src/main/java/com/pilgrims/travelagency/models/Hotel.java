@@ -45,7 +45,7 @@ public class Hotel extends Auditable<String> implements Serializable {
                 nullable = false,
                 referencedColumnName = "id",
                 foreignKey = @ForeignKey(name = "city_hotel_fk"))
-    private City city;
+    private String city;
 
     private boolean isActive;
 
