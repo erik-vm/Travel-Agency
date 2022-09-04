@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+import java.sql.Date;
+
 import static com.pilgrims.travelagency.utils.Constants.Security.*;
 
 /**
@@ -21,8 +23,10 @@ import static com.pilgrims.travelagency.utils.Constants.Security.*;
 @Component
 public class DataInit {
 
+    /**
     @Autowired
     private AuthorityService authorityService;
+     */
 
     @Autowired
     private UserService userService;
@@ -35,6 +39,7 @@ public class DataInit {
 
     // PRIVATE METHODS //
 
+    /**
     private void initAuthorityData() {
         System.out.println("Starting initializing Authority..");
         Authority authorityAdmin = new Authority();
@@ -49,27 +54,28 @@ public class DataInit {
         authorityGuest.setName(AUTHORITY_GUEST);
         createAuthority(authorityGuest);
     }
+     */
 
     private void initUserData() {
         System.out.println("Starting initializing User..");
 
+        User user = new User();
+        user.setUserName("test");
+        user.setPassword("test");
+        user.setActive(true);
+        user.setAddress("Linn 1, Tänav 2, maja ja korter");
+        user.setEmail("suvaline@domeen.com");
+
         try {
-            Authority authority = authorityService.findAuthorityByName(AUTHORITY_ADMIN);
+            userService.createUser(user);
+            System.out.println("User " +user.getUserName()+" created successfully");
 
-            User user = new User();
-            user.setUserName("admin@pilgrim.com");
-            user.setPassword("123456");
-            user.setAuthority(authority);
-            System.out.println("User admin@pilgrim.com  created");
-
-
-
-        } catch (AuthorityNotFoundException e) {
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
     }
 
-    private void createAuthority(Authority authority) {
+    /**private void createAuthority(Authority authority) {
         try {
             Authority resultAuthority = authorityService.findAuthorityByName(authority.getName());
             System.out.println("Cannot pre-initialize authority:" + resultAuthority.getName());
@@ -77,4 +83,5 @@ public class DataInit {
             authorityService.createAuthority(authority);
         }
     }
+     */
 }
