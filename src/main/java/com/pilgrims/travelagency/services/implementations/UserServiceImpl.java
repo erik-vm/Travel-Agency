@@ -4,11 +4,13 @@ import com.pilgrims.travelagency.models.User;
 import com.pilgrims.travelagency.repositories.UserRepository;
 import com.pilgrims.travelagency.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Implementation of UserService
@@ -23,11 +25,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private Base64.Encoder base64Encoder;
+
 
     @Override
     public void createUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(base64Encoder.encodeToString(user.getPassword().getBytes()));
         user.setActive(true);
         userRepository.save(user);
 
@@ -35,16 +38,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByUserName(String userName) {
-        return null;
+        Optional<User> optionalUser = userRepository.findByUserName(userName);
+        return optionalUser.get();
+    }
+
+    @Override
+    public User findUserById(UUID id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.get();
     }
 
     @Override
     public User findByUserNameAndPassword(String userName, String password) {
+        Optional<User> optionalUser = userRepository.findByUserNameAndPassword(userName, password);
         return null;
     }
 
     @Override
     public List<User> findAllUsers() {
+
         return userRepository.findAll();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        if (findUserById(user.getId()) != null) {
+            userRepository.saveAndFlush(user);
+        }
     }
 }

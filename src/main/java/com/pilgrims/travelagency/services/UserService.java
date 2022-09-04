@@ -1,8 +1,8 @@
 package com.pilgrims.travelagency.services;
 
 import com.pilgrims.travelagency.models.User;
-
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Service to handle user related operations
@@ -27,6 +27,14 @@ public interface UserService {
     User findUserByUserName(String userName);
 
     /**
+     * To find User by its ID
+     * @param id id of user
+     * @return User
+     */
+    User findUserById(UUID id);
+
+
+    /**
      * To find User by userName and password
      *
      * @author Ott Pikk
@@ -38,4 +46,10 @@ public interface UserService {
      * @return list of all Users
      */
     List<User> findAllUsers();
+
+    /**
+     * To update an existing User
+     * @param user user
+     */
+    void updateUser (User user);
 }

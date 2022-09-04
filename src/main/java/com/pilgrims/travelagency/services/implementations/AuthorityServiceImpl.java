@@ -5,6 +5,8 @@ import com.pilgrims.travelagency.models.Authority;
 import com.pilgrims.travelagency.repositories.AuthorityRepository;
 import com.pilgrims.travelagency.services.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,8 @@ import java.util.Optional;
  *
  * @author Ott Pikk
  */
+@Service
+@Transactional
 public class AuthorityServiceImpl implements AuthorityService {
     @Autowired
     private AuthorityRepository authorityRepository;
