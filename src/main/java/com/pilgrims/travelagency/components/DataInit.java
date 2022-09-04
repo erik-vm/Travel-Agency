@@ -30,9 +30,12 @@ public class DataInit {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AuthorityService authorityService;
+
 
     @PostConstruct
-    public void init() {
+    public void init() throws AuthorityNotFoundException {
         //initAuthorityData();
         initUserData();
     }
@@ -56,15 +59,17 @@ public class DataInit {
     }
      */
 
-    private void initUserData() {
+    private void initUserData() throws AuthorityNotFoundException {
         System.out.println("Starting initializing User..");
-
+        Authority authority = new Authority();
+        authority.setName(AUTHORITY_ADMIN);
         User user = new User();
         user.setUserName("test");
         user.setPassword("test");
         user.setActive(true);
         user.setAddress("Linn 1, Tänav 2, maja ja korter");
         user.setEmail("suvaline@domeen.com");
+        user.setAuthority(authority);
 
         try {
             userService.createUser(user);

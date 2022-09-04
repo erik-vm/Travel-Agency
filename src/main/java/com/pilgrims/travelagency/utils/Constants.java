@@ -16,5 +16,13 @@ public class Constants {
         public static final String AUTHORITY_GUEST = "ROLE_GUEST";
     }
 
+    public static class HotelStandard {
+        public static final String HOTEL_ONE = "ONE_STAR";
+        public static final String HOTEL_TWO = "TWO_STAR";
+        public static final String HOTEL_THREE = "THREE_STAR";
+        public static final String HOTEL_FOUR = "FOUR_STAR";
+        public static final String HOTEL_FIVE = "FIVE_STAR";
+    }
+
 
 }
