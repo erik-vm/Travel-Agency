@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import java.time.ZoneId;
 
 import static com.pilgrims.travelagency.utils.Constants.Security.AUTHORITY_ADMIN;
+import static com.pilgrims.travelagency.utils.Constants.Security.AUTHORITY_CUSTOMER;
 
 /**
  * Component to initialize data on app startup
@@ -34,8 +35,8 @@ public class DataInit {
     @PostConstruct
     public void init() {
         //initAuthorityData();
-        //   initUserData();
-        populateDBWithUsers();
+           initUserData();
+        //populateDBWithUsers();
     }
 
     // PRIVATE METHODS //
@@ -61,6 +62,7 @@ public class DataInit {
         System.out.println("Starting initializing User..");
         Authority authority = new Authority();
         authority.setName(AUTHORITY_ADMIN);
+        authorityService.createAuthority(authority);
         User user = new User();
         user.setUserName("test");
         user.setPassword("test");
@@ -91,8 +93,9 @@ public class DataInit {
 
     private void populateDBWithUsers() {
         Faker faker = new Faker();
-        //   Authority authority = new Authority();
-        //  authority.setName(AUTHORITY_CUSTOMER);
+          Authority authority = new Authority();
+          authority.setName(AUTHORITY_CUSTOMER);
+          authorityService.createAuthority(authority);
         for (int i = 0; i < 30; i++) {
             User user = new User();
             String firstName = faker.name().firstName();
@@ -105,7 +108,7 @@ public class DataInit {
             user.setPhoneNumber(faker.phoneNumber().toString());
             user.setActive(true);
             user.setAddress(faker.address().streetAddress() + ", " + faker.address().streetAddressNumber() + ", " + faker.address().cityName());
-            // user.setAuthority(authority);
+            user.setAuthority(authority);
             user.setPassword("password");
             user.setDateOfBirth(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             userService.createUser(user);
