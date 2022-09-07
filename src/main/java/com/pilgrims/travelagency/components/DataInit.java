@@ -35,9 +35,9 @@ public class DataInit {
 
     @PostConstruct
     public void init() throws AuthorityNotFoundException {
-        initAuthorityData();
-        initUserData();
-        populateDBWithUsers();
+        //initAuthorityData();
+        //initUserData();
+        //populateDBWithUsers();
     }
 
     // PRIVATE METHODS //
@@ -96,7 +96,7 @@ public class DataInit {
             User user = new User();
             String firstName = faker.name().firstName();
             String lastName = faker.name().lastName();
-            String email = String.format("%s.%s@sda.com", firstName, lastName);
+            String email = String.format("%s.%s@sda.com", firstName, lastName).toLowerCase();
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
