@@ -6,10 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -28,5 +25,7 @@ public class Country extends Auditable<String> implements Serializable {
 
     private String name;
     private String description;
+    @OneToOne(cascade = CascadeType.MERGE)
+    public Continent continent;
     private boolean isActive;
 }
