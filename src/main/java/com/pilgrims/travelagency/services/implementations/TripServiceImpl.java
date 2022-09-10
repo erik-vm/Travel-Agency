@@ -6,6 +6,7 @@ import com.pilgrims.travelagency.models.Hotel;
 import com.pilgrims.travelagency.models.Trip;
 import com.pilgrims.travelagency.repositories.TripRepository;
 import com.pilgrims.travelagency.services.TripService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import java.util.UUID;
 @Transactional
 public class TripServiceImpl implements TripService {
 
+    @Autowired
     private TripRepository tripRepository;
 
 

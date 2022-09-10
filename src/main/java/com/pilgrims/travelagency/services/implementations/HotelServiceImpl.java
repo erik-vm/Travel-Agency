@@ -8,6 +8,7 @@ import com.pilgrims.travelagency.repositories.HotelRepository;
 import com.pilgrims.travelagency.repositories.TripRepository;
 import com.pilgrims.travelagency.services.HotelService;
 import com.sun.xml.bind.api.impl.NameConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,6 +27,7 @@ import java.util.UUID;
 @Transactional
 public class HotelServiceImpl implements HotelService {
 
+    @Autowired
     private HotelRepository hotelRepository;
 
     @Override
