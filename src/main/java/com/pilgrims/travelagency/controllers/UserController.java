@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findSchoolById(@PathVariable UUID id) {
+    public ResponseEntity<?> findUserById(@PathVariable UUID id) {
         User user = userService.findUserById(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -43,6 +43,16 @@ public class UserController {
     public ResponseEntity<?> createUser( @RequestBody User user) {
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{userName}")
+    public ResponseEntity<?> findByUserNameAndPassword(@PathVariable String userName, @PathVariable String password) {
+        User user = userService.findByUserNameAndPassword(userName, password);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(user, headers, HttpStatus.OK);
+
     }
 
 
