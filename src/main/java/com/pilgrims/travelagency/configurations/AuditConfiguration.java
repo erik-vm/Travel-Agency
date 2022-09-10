@@ -1,4 +1,4 @@
-package com.pilgrims.travelagency.configuration;
+package com.pilgrims.travelagency.configurations;
 
 import com.pilgrims.travelagency.handlers.AuditAwareHandler;
 import org.springframework.context.annotation.Bean;
