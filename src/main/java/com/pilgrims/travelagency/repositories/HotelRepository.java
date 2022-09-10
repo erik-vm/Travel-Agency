@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * REpoitory to handle hotel related DB operations
+ * Repoitory to handle hotel related DB operations
  *
  * @author Ott Pikk
  */

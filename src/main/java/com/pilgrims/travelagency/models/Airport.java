@@ -1,6 +1,5 @@
 package com.pilgrims.travelagency.models;
 
-import com.pilgrims.travelagency.utils.Constants;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;

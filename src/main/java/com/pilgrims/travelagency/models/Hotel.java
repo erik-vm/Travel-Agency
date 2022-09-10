@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * School model
+ * Hotel model
  *
  * @author Ott Pikk
  */

@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.models.Authority;
 import com.pilgrims.travelagency.models.User;
 import com.pilgrims.travelagency.repositories.UserRepository;
 import com.pilgrims.travelagency.services.UserService;
@@ -30,6 +31,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
+        Authority authority = new Authority();
+        authority.setName("CUSTOMER");
+        user.setAuthority(authority);
+        user.setUserName(user.getEmail());
         user.setPassword(base64Encoder.encodeToString(user.getPassword().getBytes()));
         user.setActive(true);
         userRepository.save(user);
