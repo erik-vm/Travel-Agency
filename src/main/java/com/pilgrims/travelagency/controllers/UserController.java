@@ -1,5 +1,7 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.UserNotFoundException;
+import com.pilgrims.travelagency.models.Login;
 import com.pilgrims.travelagency.models.User;
 import com.pilgrims.travelagency.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,19 +42,22 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser( @RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userName}")
-    public ResponseEntity<?> findByUserNameAndPassword(@PathVariable String userName, @PathVariable String password) {
-        User user = userService.findByUserNameAndPassword(userName, password);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(user, headers, HttpStatus.OK);
-
+    @GetMapping("/login")
+    public ResponseEntity<?> findByUserNameAndPassword(@RequestBody Login login) {
+        try {
+            User user = userService.findByUserNameAndPassword(login.getUserName(), login.getPassword());
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setDate(new Date().toInstant());
+            return new ResponseEntity<>(user, headers, HttpStatus.OK);
+        } catch(UserNotFoundException exception) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 

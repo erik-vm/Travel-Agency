@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.UserNotFoundException;
 import com.pilgrims.travelagency.models.User;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +40,7 @@ public interface UserService {
      *
      * @author Ott Pikk
      */
-    User findByUserNameAndPassword(String userName, String password);
+    User findByUserNameAndPassword(String userName, String password) throws UserNotFoundException;
 
     /** To find all Users
      *

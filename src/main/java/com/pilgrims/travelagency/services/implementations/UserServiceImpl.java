@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.exceptions.UserNotFoundException;
 import com.pilgrims.travelagency.models.Authority;
 import com.pilgrims.travelagency.models.User;
 import com.pilgrims.travelagency.repositories.UserRepository;
@@ -38,7 +39,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(base64Encoder.encodeToString(user.getPassword().getBytes()));
         user.setActive(true);
         userRepository.save(user);
-
     }
 
     @Override
@@ -54,14 +54,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserNameAndPassword(String userName, String password) {
-        Optional<User> optionalUser = userRepository.findByUserNameAndPassword(userName, password);
-        return null;
+    public User findByUserNameAndPassword(String userName, String password) throws UserNotFoundException {
+        String encodedPassword = base64Encoder.encodeToString(password.getBytes());
+        Optional<User> optionalUser = userRepository.findByUserNameAndPassword(userName, encodedPassword);
+
+        if(optionalUser.isEmpty()) {
+            throw new UserNotFoundException(userName, password);
+        }
+
+        return optionalUser.get();
     }
 
     @Override
     public List<User> findAllUsers() {
-
         return userRepository.findAll();
     }
 
