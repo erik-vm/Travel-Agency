@@ -16,7 +16,7 @@ import java.util.UUID;
 @Repository
 public interface TripRepository extends JpaRepository<Trip, UUID> {
 
-    List<Trip> findTripByContinent(City city);
+    //List<Trip> findTripByContinent(City city);
 
     List<Trip> findTripByDuration(double duration);
 

@@ -48,7 +48,7 @@ public class Trip extends Auditable<String> implements Serializable {
 
     private Date departureDate;
     private Date returnDate;
-    private int durationOfDays;
+    private int duration;
 
     private double price;
     private double discount;

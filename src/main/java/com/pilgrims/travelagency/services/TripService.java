@@ -57,13 +57,15 @@ public interface TripService {
      */
     void restoreTrip(UUID id);
 
+
+
     /**
      * To find trip by continent
      *
      * @param city city
      * @return list of trips
      */
-    List<Trip> findTripsByContinent(City city);
+    //List<Trip> findTripsByContinent(City city);
 
     /**
      * To find trip by country
@@ -71,7 +73,8 @@ public interface TripService {
      * @param city city
      * @return list of trips
      */
-    List<Trip> findTripsByCountry(City city);
+    //List<Trip> findTripsByCountry(City city);
+
 
     /** To find trip by duration
      *

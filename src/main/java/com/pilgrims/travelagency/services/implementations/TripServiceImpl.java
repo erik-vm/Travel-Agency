@@ -69,6 +69,7 @@ public class TripServiceImpl implements TripService {
         tripRepository.saveAndFlush(trip);
     }
 
+    /**
     @Override
     public List<Trip> findTripsByContinent(City city) {
         return tripRepository.findTripByContinent(city);
@@ -78,6 +79,7 @@ public class TripServiceImpl implements TripService {
     public List<Trip> findTripsByCountry(City city) {
         return tripRepository.findTripByContinent(city);
     }
+     */
 
     @Override
     public List<Trip> findTripsByDuration(double duration) {
