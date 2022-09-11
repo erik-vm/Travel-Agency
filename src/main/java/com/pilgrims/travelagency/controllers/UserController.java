@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
 import com.pilgrims.travelagency.exceptions.UserNotFoundException;
 import com.pilgrims.travelagency.models.Login;
 import com.pilgrims.travelagency.models.User;
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) throws AuthorityNotFoundException {
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

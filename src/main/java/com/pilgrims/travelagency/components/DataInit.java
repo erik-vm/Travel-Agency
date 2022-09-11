@@ -44,18 +44,21 @@ public class DataInit {
 
 
       private void initAuthorityData() {
-      System.out.println("Starting initializing Authority..");
-      Authority authorityAdmin = new Authority();
-      authorityAdmin.setName(AUTHORITY_ADMIN);
+          System.out.println("Starting initializing Authority..");
+          Authority authorityAdmin = new Authority();
+          authorityAdmin.setName(AUTHORITY_ADMIN);
           authorityService.createAuthority(authorityAdmin);
+          System.out.println("Successfully initialized Authority: ADMIN");
 
-      Authority authorityCustomer = new Authority();
-      authorityCustomer.setName(AUTHORITY_CUSTOMER);
-      authorityService.createAuthority(authorityCustomer);
+          Authority authorityCustomer = new Authority();
+          authorityCustomer.setName(AUTHORITY_CUSTOMER);
+          authorityService.createAuthority(authorityCustomer);
+          System.out.println("Successfully initialized Authority: CUSTOMER");
 
-      Authority authorityGuest = new Authority();
-      authorityGuest.setName(AUTHORITY_GUEST);
-      authorityService.createAuthority(authorityGuest);
+          Authority authorityGuest = new Authority();
+          authorityGuest.setName(AUTHORITY_GUEST);
+          authorityService.createAuthority(authorityGuest);
+          System.out.println("Successfully initialized Authority: GUEST");
       }
 
 
@@ -90,8 +93,6 @@ public class DataInit {
      */
 
     private void populateDBWithUsers() throws AuthorityNotFoundException {
-
-
         for (int i = 0; i < 30; i++) {
             User user = new User();
             String firstName = faker.name().firstName();
@@ -100,7 +101,6 @@ public class DataInit {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
-            user.setUserName(email);
             user.setPhoneNumber(faker.phoneNumber().toString());
             user.setActive(true);
             user.setAddress(faker.address().streetAddress()  + ", " + faker.address().cityName());

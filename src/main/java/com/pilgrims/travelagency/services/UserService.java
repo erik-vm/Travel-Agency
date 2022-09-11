@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
 import com.pilgrims.travelagency.exceptions.UserNotFoundException;
 import com.pilgrims.travelagency.models.User;
 import java.util.List;
@@ -17,7 +18,7 @@ public interface UserService {
      *
      * @param user User
      */
-    void createUser(User user);
+    void createUser(User user) throws AuthorityNotFoundException;
 
     /**
      * To find User by userName

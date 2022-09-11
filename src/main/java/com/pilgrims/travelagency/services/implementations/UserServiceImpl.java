@@ -1,9 +1,10 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
 import com.pilgrims.travelagency.exceptions.UserNotFoundException;
-import com.pilgrims.travelagency.models.Authority;
 import com.pilgrims.travelagency.models.User;
 import com.pilgrims.travelagency.repositories.UserRepository;
+import com.pilgrims.travelagency.services.AuthorityService;
 import com.pilgrims.travelagency.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static com.pilgrims.travelagency.utils.Constants.Security.AUTHORITY_CUSTOMER;
 
 /**
  * Implementation of UserService
@@ -24,6 +27,9 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private AuthorityService authorityService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -31,10 +37,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void createUser(User user) {
-        Authority authority = new Authority();
-        authority.setName("CUSTOMER");
-        user.setAuthority(authority);
+    public void createUser(User user) throws AuthorityNotFoundException {
+        user.setAuthority(authorityService.findAuthorityByName(AUTHORITY_CUSTOMER));
         user.setUserName(user.getEmail());
         user.setPassword(base64Encoder.encodeToString(user.getPassword().getBytes()));
         user.setActive(true);
