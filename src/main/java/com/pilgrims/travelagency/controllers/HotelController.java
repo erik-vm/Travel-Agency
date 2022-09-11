@@ -1,6 +1,7 @@
 package com.pilgrims.travelagency.controllers;
 
 import com.pilgrims.travelagency.models.City;
+import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
 import com.pilgrims.travelagency.models.HotelStandard;
 import com.pilgrims.travelagency.services.HotelService;
@@ -52,14 +53,14 @@ public class HotelController {
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
-  /*  @GetMapping("/{country}")
+    @GetMapping("/{country}")
     public ResponseEntity<?> findHotelsByCountry(@PathVariable Country country) {
         List<Hotel> list = hotelService.findHotelsByCountry(country);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setDate(new Date().toInstant());
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
-    } */
+    }
 
     @GetMapping("/{standard}")
     public ResponseEntity<?> findHotelsByStandard(@PathVariable HotelStandard standard) {

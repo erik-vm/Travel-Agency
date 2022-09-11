@@ -1,8 +1,6 @@
 package com.pilgrims.travelagency.services;
 
-import com.pilgrims.travelagency.models.City;
-import com.pilgrims.travelagency.models.Hotel;
-import com.pilgrims.travelagency.models.Trip;
+import com.pilgrims.travelagency.models.*;
 
 import java.util.Date;
 import java.util.List;
@@ -57,23 +55,21 @@ public interface TripService {
      */
     void restoreTrip(UUID id);
 
-
+    /**
+     * To find trip by country
+     *
+     * @param country country
+     * @return list of trips
+     */
+    List<Trip> findTripsByCountry(Country country);
 
     /**
      * To find trip by continent
      *
-     * @param city city
+     * @param continent continent
      * @return list of trips
      */
-    //List<Trip> findTripsByContinent(City city);
-
-    /**
-     * To find trip by country
-     *
-     * @param city city
-     * @return list of trips
-     */
-    //List<Trip> findTripsByCountry(City city);
+    List<Trip> findTripByContinent(Continent continent);
 
 
     /** To find trip by duration

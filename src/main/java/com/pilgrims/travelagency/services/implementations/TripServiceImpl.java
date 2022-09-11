@@ -1,9 +1,6 @@
 package com.pilgrims.travelagency.services.implementations;
 
-import com.pilgrims.travelagency.models.City;
-import com.pilgrims.travelagency.models.Continent;
-import com.pilgrims.travelagency.models.Hotel;
-import com.pilgrims.travelagency.models.Trip;
+import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.repositories.TripRepository;
 import com.pilgrims.travelagency.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,6 @@ public class TripServiceImpl implements TripService {
 
     @Autowired
     private TripRepository tripRepository;
-
 
     @Override
     public void createTrip(Trip trip) {
@@ -69,17 +65,16 @@ public class TripServiceImpl implements TripService {
         tripRepository.saveAndFlush(trip);
     }
 
-    /**
+
     @Override
-    public List<Trip> findTripsByContinent(City city) {
-        return tripRepository.findTripByContinent(city);
+    public List<Trip> findTripByContinent(Continent continent) {
+        return tripRepository.findTripByContinent(continent);
     }
 
     @Override
-    public List<Trip> findTripsByCountry(City city) {
-        return tripRepository.findTripByContinent(city);
+    public List<Trip> findTripsByCountry(Country country) {
+        return tripRepository.findTripByCountry(country);
     }
-     */
 
     @Override
     public List<Trip> findTripsByDuration(double duration) {

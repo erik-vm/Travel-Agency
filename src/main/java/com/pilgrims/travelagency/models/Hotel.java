@@ -38,5 +38,8 @@ public class Hotel extends Auditable<String> implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     private City city;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Country country;
+
     private boolean isActive;
 }

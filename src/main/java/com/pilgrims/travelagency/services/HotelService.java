@@ -35,7 +35,7 @@ public interface HotelService {
      * @param country Country
      * @return List of hotels
      */
-  //  List<Hotel> findHotelsByCountry(Country country);
+    List<Hotel> findHotelsByCountry(Country country);
 
     /**
      * To find a hotel by standard

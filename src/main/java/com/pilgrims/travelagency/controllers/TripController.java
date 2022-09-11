@@ -1,7 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
-import com.pilgrims.travelagency.models.Hotel;
-import com.pilgrims.travelagency.models.Trip;
+import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -53,6 +52,28 @@ public class TripController {
         headers.setDate(new Date().toInstant());
         return new ResponseEntity<>(trips, headers, HttpStatus.OK);
     }
+
+    @GetMapping("/{country}")
+    public ResponseEntity<?> findTripByCountry(@PathVariable Country country) {
+        List<Trip> trips = tripService.findTripsByCountry(country);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/{continent}")
+    public ResponseEntity<?> findTripByContinent(@PathVariable Continent continent) {
+        List<Trip> trips = tripService.findTripByContinent(continent);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/{price}")
     public ResponseEntity<?> findTripByPrice(@PathVariable double price) {

@@ -38,6 +38,12 @@ public class Trip extends Auditable<String> implements Serializable {
     private City arrivalCity;
 
     @OneToOne(cascade = CascadeType.MERGE)
+    private Country country;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Continent continent;
+
+    @OneToOne(cascade = CascadeType.MERGE)
     private Airport arrivalAirport;
 
     @OneToOne(cascade = CascadeType.MERGE)

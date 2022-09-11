@@ -21,7 +21,7 @@ import java.util.UUID;
 public interface HotelRepository extends JpaRepository<Hotel, UUID> {
     Optional<Hotel> findByName(String name);
     List<Hotel> findByCity(City city);
-    // List<Hotel> findByCountry(Country country);
+    List<Hotel> findByCountry(Country country);
     List<Hotel> findByHotelStandard(HotelStandard hotelStandard);
 
 
