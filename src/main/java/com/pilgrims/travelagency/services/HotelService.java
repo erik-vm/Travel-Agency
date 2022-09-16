@@ -4,7 +4,6 @@ import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
 import com.pilgrims.travelagency.models.HotelStandard;
-import com.sun.xml.bind.api.impl.NameConverter;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,8 +1,8 @@
 package com.pilgrims.travelagency.services;
 
 import com.pilgrims.travelagency.models.City;
+import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
-import com.pilgrims.travelagency.models.HotelStandard;
 
 import java.util.List;
 import java.util.UUID;
@@ -59,4 +59,5 @@ public interface CityService {
     void restoreCityById(UUID id);
 
 
+    List<City> findCitiesByCountry(Country country);
 }

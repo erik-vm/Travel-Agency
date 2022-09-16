@@ -5,14 +5,11 @@ import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
 import com.pilgrims.travelagency.models.HotelStandard;
 import com.pilgrims.travelagency.repositories.HotelRepository;
-import com.pilgrims.travelagency.repositories.TripRepository;
 import com.pilgrims.travelagency.services.HotelService;
-import com.sun.xml.bind.api.impl.NameConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

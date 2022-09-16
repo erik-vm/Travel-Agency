@@ -1,9 +1,6 @@
 package com.pilgrims.travelagency.repositories;
 
-import com.pilgrims.travelagency.models.Airport;
-import com.pilgrims.travelagency.models.City;
-import com.pilgrims.travelagency.models.Hotel;
-import com.pilgrims.travelagency.models.HotelStandard;
+import com.pilgrims.travelagency.models.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +13,7 @@ public interface AirportRepository extends JpaRepository<Airport, UUID> {
     Optional<Airport> findByName(String name);
 
 
+    List<Airport> findByCity(City city);
 
-
-
+    List<Airport> findByCountry(Country country);
 }
