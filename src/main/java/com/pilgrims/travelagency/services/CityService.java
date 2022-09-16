@@ -1,4 +1,4 @@
-package com.pilgrims.travelagency.services.implementations;
+package com.pilgrims.travelagency.services;
 
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Hotel;

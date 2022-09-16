@@ -1,4 +1,4 @@
-package com.pilgrims.travelagency.services.implementations;
+package com.pilgrims.travelagency.services;
 
 import com.pilgrims.travelagency.models.*;
 
@@ -16,7 +16,7 @@ public interface AirportService {
 
     /**
      * To find an airport by city
-     * @param airport Airport
+     * @param city City
      * @return List of airports
      */
     List<Airport> findAirportsByCity(City city);
