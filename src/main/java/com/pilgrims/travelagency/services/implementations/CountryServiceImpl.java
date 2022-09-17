@@ -78,4 +78,14 @@ public class CountryServiceImpl implements CountryService {
         countryRepository.saveAndFlush(country);
 
     }
+
+    @Override
+    public List<Country> findCountryByContinent(Country country) {
+        return null;
+    }
+
+    @Override
+    public City findCountryByName(String name) {
+        return null;
+    }
 }
