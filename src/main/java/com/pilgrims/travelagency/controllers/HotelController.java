@@ -30,8 +30,8 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping
-    public List<Hotel> findAllHotels() {
-        return hotelService.findAllHotels();
+    public <Hotel> List<Hotel> findAllHotels() {
+        return (List<Hotel>) hotelService.findAllHotels();
     }
 
     @GetMapping("/{id}")
