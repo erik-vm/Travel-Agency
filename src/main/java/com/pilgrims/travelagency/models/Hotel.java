@@ -1,6 +1,6 @@
 package com.pilgrims.travelagency.models;
 
-
+import com.pilgrims.travelagency.utils.Constants;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,11 +10,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-/**
- * Hotel model
- *
- * @author Ott Pikk
- */
+
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -29,17 +26,7 @@ public class Hotel extends Auditable<String> implements Serializable {
     private UUID id;
 
     private String name;
-
-    @Enumerated(EnumType.STRING)
-    private HotelStandard hotelStandard;
-
-    private String description;
-
     @OneToOne(cascade = CascadeType.MERGE)
-    private City city;
-
-    @OneToOne(cascade = CascadeType.MERGE)
-    private Country country;
-
+    public Hotel hotel;
     private boolean isActive;
 }

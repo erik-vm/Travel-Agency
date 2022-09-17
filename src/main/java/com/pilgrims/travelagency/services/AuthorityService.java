@@ -2,8 +2,10 @@ package com.pilgrims.travelagency.services;
 
 import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
 import com.pilgrims.travelagency.models.Authority;
+import com.pilgrims.travelagency.models.User;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Service to handle authority related operations
@@ -34,4 +36,8 @@ public interface AuthorityService {
      * @return list of authorities
      */
     List<Authority> findAllAuthorities();
+
+    Authority findAuthorityById(UUID id);
+
+    User findByUserNameAndPassword(String userName, String password);
 }

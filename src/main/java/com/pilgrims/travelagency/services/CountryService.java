@@ -62,4 +62,7 @@ public interface CountryService {
     void restoreCountryById(UUID id);
 
 
+    List<Country> findCountryByContinent(Country country);
+
+    City findCountryByName(String name);
 }
