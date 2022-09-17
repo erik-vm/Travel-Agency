@@ -26,7 +26,5 @@ public class Hotel extends Auditable<String> implements Serializable {
     private UUID id;
 
     private String name;
-    @OneToOne(cascade = CascadeType.MERGE)
-    public Hotel hotel;
     private boolean isActive;
 }

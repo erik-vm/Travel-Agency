@@ -14,6 +14,4 @@ public interface AirportRepository extends JpaRepository<Airport, UUID> {
 
 
     List<Airport> findByCity(City city);
-
-    List<Airport> findByCountry(Country country);
 }

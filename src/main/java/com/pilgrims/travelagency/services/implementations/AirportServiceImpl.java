@@ -38,7 +38,7 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public List<Airport> findAirportsByCountry(Country country) {
-        return airportRepository.findByCountry(country);
+        return null;
     }
 
     @Override

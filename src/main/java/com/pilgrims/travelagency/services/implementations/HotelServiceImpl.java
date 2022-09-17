@@ -36,17 +36,20 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<Hotel> findHotelsByCity(City city) {
-        return hotelRepository.findByCity(city);
+        //return hotelRepository.findByCity(city);
+        return null;
     }
 
     @Override
     public List<Hotel> findHotelsByCountry(Country country) {
-        return hotelRepository.findByCountry(country);
+        return null;
+        //return hotelRepository.findByCountry(country);
     }
 
     @Override
     public List<Hotel> findHotelsByStandard(HotelStandard hotelStandard) {
-        return hotelRepository.findByHotelStandard(hotelStandard);
+        //return hotelRepository.findByHotelStandard(hotelStandard);
+        return null;
     }
 
     @Override
