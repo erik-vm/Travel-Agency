@@ -7,7 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -38,12 +40,6 @@ public class Trip extends Auditable<String> implements Serializable {
     private City arrivalCity;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    private Country country;
-
-    @OneToOne(cascade = CascadeType.MERGE)
-    private Continent continent;
-
-    @OneToOne(cascade = CascadeType.MERGE)
     private Airport arrivalAirport;
 
     @OneToOne(cascade = CascadeType.MERGE)
@@ -54,12 +50,21 @@ public class Trip extends Auditable<String> implements Serializable {
 
     private Date departureDate;
     private Date returnDate;
-    private int duration;
+    private int durationInDays;
 
-    private double price;
-    private double discount;
+    private double priceForAdult;
+    private double priceForChild;
+
+    private int numberOfBedsForAdults;
+    private int numberOfBedsForChildren;
 
     private boolean isActive;
+    private boolean promoted;
+
+    private int timesBooked;
+
+//    @ManyToMany(mappedBy = "tripsBooked")
+//    List<User> bookedByUsers = new ArrayList<>();
 
 
 

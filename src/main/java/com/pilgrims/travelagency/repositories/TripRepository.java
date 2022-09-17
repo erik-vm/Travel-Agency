@@ -1,9 +1,6 @@
 package com.pilgrims.travelagency.repositories;
 
-import com.pilgrims.travelagency.models.City;
-import com.pilgrims.travelagency.models.Continent;
-import com.pilgrims.travelagency.models.Country;
-import com.pilgrims.travelagency.models.Trip;
+import com.pilgrims.travelagency.models.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,11 +15,14 @@ import java.util.UUID;
 @Repository
 public interface TripRepository extends JpaRepository<Trip, UUID> {
 
-    List<Trip> findTripByCountry(Country country);
 
-    List<Trip> findTripByContinent(Continent continent);
+    List<Airport> findByDepartureCity(City departureCity);
 
-    List<Trip> findTripByDuration(double duration);
+    List<Airport> findByArrivalCity(City arrivalCity);
 
-    List<Trip> findTripByPrice(double price);
+    List<Airport> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity);
+    List<Trip> findByDepartureAirport(Airport departureAirport);
+
+    List<Trip> findByArrivalAirport(Airport arrivalAirport);
+    List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport);
 }

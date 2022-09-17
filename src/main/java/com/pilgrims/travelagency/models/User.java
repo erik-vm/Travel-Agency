@@ -8,6 +8,8 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -42,4 +44,8 @@ public class User extends Auditable<String> implements Serializable {
     private Authority authority;
 
     private boolean isActive;
+
+//    @ManyToMany
+//    @JoinTable(name = "booked_trips", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
+//    private List<Trip> tripsBooked = new ArrayList<>();
 }

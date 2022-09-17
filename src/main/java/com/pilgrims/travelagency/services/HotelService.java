@@ -29,12 +29,6 @@ public interface HotelService {
      */
     List<Hotel> findHotelsByCity(City city);
 
-    /**
-     * To find a hotel by country
-     * @param country Country
-     * @return List of hotels
-     */
-    List<Hotel> findHotelsByCountry(Country country);
 
     /**
      * To find a hotel by standard

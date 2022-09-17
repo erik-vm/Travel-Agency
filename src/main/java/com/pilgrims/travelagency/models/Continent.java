@@ -24,8 +24,5 @@ public class Continent extends Auditable<String> implements Serializable {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    public Country country;
-
     private boolean isActive;
 }

@@ -55,34 +55,84 @@ public interface TripService {
      */
     void restoreTrip(UUID id);
 
-    /**
-     * To find trip by country
-     *
-     * @param country country
-     * @return list of trips
-     */
-    List<Trip> findTripsByCountry(Country country);
+//    /**
+//     * To find trip by country
+//     *
+//     * @param country country
+//     * @return list of trips
+//     */
+//    List<Trip> findTripsByCountry(Country country);
+//
+//    /**
+//     * To find trip by continent
+//     *
+//     * @param continent continent
+//     * @return list of trips
+//     */
+//    List<Trip> findTripByContinent(Continent continent);
+//
+//
+//    /** To find trip by duration
+//     *
+//     * @param duration duration
+//     * @return list of trips
+//     */
+//    List<Trip> findTripsByDuration(double duration);
+//
+//    /** To find trip by price
+//     *
+//     * @param price price
+//     * @return list of trips
+//     */
+//    List<Trip> findTripsByPrice(double price);
+//
+//    /**
+//     * To find trips from departure city
+//     *
+//     * @param departureCity City
+//     * @return list of trips
+//     */
+    List<Airport> findByDepartureCity(City departureCity);
 
     /**
-     * To find trip by continent
+     * To find trips to arrival city
      *
-     * @param continent continent
+     * @param arrivalCity City
      * @return list of trips
      */
-    List<Trip> findTripByContinent(Continent continent);
+    List<Airport> findByArrivalCity(City arrivalCity);
 
-
-    /** To find trip by duration
+    /**
+     * To find trips from departure airport
      *
-     * @param duration duration
+     * @param departureAirport Airport
      * @return list of trips
      */
-    List<Trip> findTripsByDuration(double duration);
+    List<Trip> findByDepartureAirport(Airport departureAirport);
 
-    /** To find trip by price
+    /**
+     * To find trips to arrival airport
      *
-     * @param price price
+     * @param arrivalAirport Airport
      * @return list of trips
      */
-    List<Trip> findTripsByPrice(double price);
+    List<Trip> findByArrivalAirport(Airport arrivalAirport);
+
+    /**
+     * To find trips from departure airport to arrival airport
+     *
+     * @param departureAirport Airport
+     * @param arrivalAirport Airport
+     * @return list of trips
+     */
+    List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport);
+
+    /**
+     * To find trips from departure city to arrival city
+     *
+     * @param departureCity City
+     * @param arrivalCity City
+     * @return list of trips
+     */
+    List<Airport> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity);
 }

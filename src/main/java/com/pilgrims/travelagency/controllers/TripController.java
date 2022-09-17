@@ -43,47 +43,47 @@ public class TripController {
         return new ResponseEntity<>(trip, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/{duration}")
-    public ResponseEntity<?> findTripByDuration(@PathVariable double duration) {
-        List<Trip> trips = tripService.findTripsByDuration(duration);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
-    }
-
-    @GetMapping("/{country}")
-    public ResponseEntity<?> findTripByCountry(@PathVariable Country country) {
-        List<Trip> trips = tripService.findTripsByCountry(country);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
-    }
-
-    @GetMapping("/{continent}")
-    public ResponseEntity<?> findTripByContinent(@PathVariable Continent continent) {
-        List<Trip> trips = tripService.findTripByContinent(continent);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
-    }
-
-
-
-    @GetMapping("/{price}")
-    public ResponseEntity<?> findTripByPrice(@PathVariable double price) {
-        List<Trip> trips = tripService.findTripsByPrice(price);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
-    }
+//    @GetMapping("/{duration}")
+//    public ResponseEntity<?> findTripByDuration(@PathVariable double duration) {
+//        List<Trip> trips = tripService.findTripsByDuration(duration);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setDate(new Date().toInstant());
+//        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/{country}")
+//    public ResponseEntity<?> findTripByCountry(@PathVariable Country country) {
+//        List<Trip> trips = tripService.findTripsByCountry(country);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setDate(new Date().toInstant());
+//        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/{continent}")
+//    public ResponseEntity<?> findTripByContinent(@PathVariable Continent continent) {
+//        List<Trip> trips = tripService.findTripByContinent(continent);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setDate(new Date().toInstant());
+//        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+//    }
+//
+//
+//
+//    @GetMapping("/{price}")
+//    public ResponseEntity<?> findTripByPrice(@PathVariable double price) {
+//        List<Trip> trips = tripService.findTripsByPrice(price);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setDate(new Date().toInstant());
+//        return new ResponseEntity<>(trips, headers, HttpStatus.OK);
+//    }
 
 
 

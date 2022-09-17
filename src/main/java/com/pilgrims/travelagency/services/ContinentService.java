@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.ContinentNotFoundException;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Continent;
 import com.pilgrims.travelagency.models.Country;
@@ -24,7 +25,7 @@ public interface ContinentService {
      * @param name Name
      * @return Continent
      */
-    Continent findContinentByName(String name);
+    Continent findContinentByName(String name) throws ContinentNotFoundException;
 
     /**
      * To find a continent by id
@@ -39,12 +40,7 @@ public interface ContinentService {
      */
     List<Continent> findAllContinents();
 
-    /**
-     * To update an existing Continent
-     *
-     * @param continent Continent
-     */
-    void saveContinent(Continent continent);
+
 
 
 }

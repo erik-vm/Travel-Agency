@@ -67,22 +67,34 @@ public class TripServiceImpl implements TripService {
 
 
     @Override
-    public List<Trip> findTripByContinent(Continent continent) {
-        return tripRepository.findTripByContinent(continent);
+    public List<Airport> findByDepartureCity(City departureCity) {
+        return tripRepository.findByDepartureCity(departureCity);
     }
 
     @Override
-    public List<Trip> findTripsByCountry(Country country) {
-        return tripRepository.findTripByCountry(country);
+    public List<Airport> findByArrivalCity(City arrivalCity) {
+        return tripRepository.findByArrivalCity(arrivalCity);
     }
 
     @Override
-    public List<Trip> findTripsByDuration(double duration) {
-        return tripRepository.findTripByDuration(duration);
+    public List<Trip> findByDepartureAirport(Airport departureAirport) {
+        return tripRepository.findByDepartureAirport(departureAirport);
     }
 
     @Override
-    public List<Trip> findTripsByPrice(double price) {
-        return tripRepository.findTripByPrice(price);
+    public List<Trip> findByArrivalAirport(Airport arrivalAirport) {
+        return tripRepository.findByArrivalAirport(arrivalAirport);
     }
+
+    @Override
+    public List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport) {
+        return tripRepository.findByDepartureAirportAndArrivalAirport(departureAirport, arrivalAirport);
+    }
+
+    @Override
+    public List<Airport> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity) {
+        return tripRepository.findByDepartureCityAndArrivalCity(departureCity, arrivalCity);
+    }
+
+
 }

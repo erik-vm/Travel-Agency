@@ -27,7 +27,7 @@ public interface CountryService {
      * @param name Name
      * @return Country
      */
-    Country findCountriesByName(String name);
+    Country findCountryByName(String name);
 
     /**
      * To find a country by id
@@ -62,7 +62,7 @@ public interface CountryService {
     void restoreCountryById(UUID id);
 
 
-    List<Country> findCountryByContinent(Country country);
+    List<Country> findAllCountriesByContinent(Continent continent);
 
-    City findCountryByName(String name);
+
 }

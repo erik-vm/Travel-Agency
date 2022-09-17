@@ -53,14 +53,6 @@ public class HotelController {
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/{country}")
-    public ResponseEntity<?> findHotelsByCountry(@PathVariable Country country) {
-        List<Hotel> list = hotelService.findHotelsByCountry(country);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(list, headers, HttpStatus.OK);
-    }
 
     @GetMapping("/{standard}")
     public ResponseEntity<?> findHotelsByStandard(@PathVariable HotelStandard standard) {

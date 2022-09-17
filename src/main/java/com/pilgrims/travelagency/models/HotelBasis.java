@@ -1,7 +1,7 @@
 package com.pilgrims.travelagency.models;
 
 /**
- * Enum for accomondation type
+ * Enum for accommodation type
  *
  * @author Ott Pikk
  */

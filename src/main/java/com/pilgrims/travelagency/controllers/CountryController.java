@@ -1,8 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
 import com.pilgrims.travelagency.models.*;
-import com.pilgrims.travelagency.services.AirportService;
-import com.pilgrims.travelagency.services.CityService;
 import com.pilgrims.travelagency.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -44,9 +42,9 @@ public class CountryController {
     }
 
 
-    @GetMapping("/{country}")
-    public ResponseEntity<?> findCountryByContinent(@PathVariable Country country) {
-        List<Country> list = countryService.findCountryByContinent(country);
+    @GetMapping("/{continent}")
+    public ResponseEntity<?> findCountryByContinent(@PathVariable Continent continent) {
+        List<Country> list = countryService.findAllCountriesByContinent(continent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setDate(new Date().toInstant());
@@ -56,11 +54,11 @@ public class CountryController {
 
     @GetMapping("/{name}")
     public ResponseEntity<?> findCountriesByName(@PathVariable String name) {
-        City city = countryService.findCountryByName(name);
+        Country country = countryService.findCountryByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(city, headers, HttpStatus.OK);
+        return new ResponseEntity<>(country, headers, HttpStatus.OK);
     }
 
     @PostMapping

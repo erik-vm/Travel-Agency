@@ -1,10 +1,9 @@
 package com.pilgrims.travelagency.services.implementations;
 
 import com.pilgrims.travelagency.models.City;
+import com.pilgrims.travelagency.models.Continent;
 import com.pilgrims.travelagency.models.Country;
-import com.pilgrims.travelagency.repositories.CityRepository;
 import com.pilgrims.travelagency.repositories.CountryRepository;
-import com.pilgrims.travelagency.services.CityService;
 import com.pilgrims.travelagency.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country findCountriesByName(String name) {
+    public Country findCountryByName(String name) {
         Optional<Country> optionalCountry = countryRepository.findByName(name);
         return optionalCountry.get();
     }
@@ -80,12 +79,9 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<Country> findCountryByContinent(Country country) {
-        return null;
+    public List<Country> findAllCountriesByContinent(Continent continent) {
+        return countryRepository.findAllByContinent(continent);
     }
 
-    @Override
-    public City findCountryByName(String name) {
-        return null;
-    }
+
 }
