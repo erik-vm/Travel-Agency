@@ -64,11 +64,4 @@ public class Trip extends Auditable<String> implements Serializable {
 
     private int timesBooked;
 
-    @ManyToMany(mappedBy = "tripsBooked")
-    List<User> bookedByUsers = new ArrayList<>();
-
-
-
-
-
 }

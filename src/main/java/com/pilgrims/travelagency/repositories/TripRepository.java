@@ -16,11 +16,11 @@ import java.util.UUID;
 public interface TripRepository extends JpaRepository<Trip, UUID> {
 
 
-    List<Airport> findByDepartureCity(City departureCity);
+    List<Trip> findByDepartureCity(City departureCity);
 
-    List<Airport> findByArrivalCity(City arrivalCity);
+    List<Trip> findByArrivalCity(City arrivalCity);
 
-    List<Airport> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity);
+    List<Trip> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity);
     List<Trip> findByDepartureAirport(Airport departureAirport);
 
     List<Trip> findByArrivalAirport(Airport arrivalAirport);

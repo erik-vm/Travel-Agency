@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.TripNotFoundException;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,77 @@ public class TripController {
     private TripService tripService;
 
     @GetMapping
-    public List<Trip> findAllTrips() {
+    public List<Trip> findAllTrips() throws TripNotFoundException {
         return tripService.findAllTrips();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findTripById(@PathVariable UUID id) {
+    public ResponseEntity<?> findTripById(@PathVariable UUID id) throws TripNotFoundException {
         Trip trip = tripService.findTripById(id);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setDate(new Date().toInstant());
         return new ResponseEntity<>(trip, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/departure_city/{city}")
+    public ResponseEntity<?> findTripByDepartureCity(@PathVariable City city) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByDepartureCity(city);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/arrival_city/{city}")
+    public ResponseEntity<?> findTripByArrivalCity(@PathVariable City city) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByArrivalCity(city);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/departure_city/{departureCity}/arrival_city/{arrivalCity}")
+    public ResponseEntity<?> findTripByDepartureCityAndArrivalCity(@PathVariable City departureCity, @PathVariable City arrivalCity) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByDepartureCityAndArrivalCity(departureCity, arrivalCity);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+    @GetMapping("/departure_airport/{airport}")
+    public ResponseEntity<?> findTripByDepartureAirport(@PathVariable Airport airport) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByDepartureAirport(airport);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/arrival_airport/{airport}")
+    public ResponseEntity<?> findTripByArrivalAirport(@PathVariable Airport airport) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByArrivalAirport(airport);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/departure_airport/{departureAirport}/arrival_airport/{arrivalAirport}")
+    public ResponseEntity<?> findTripByDepartureAirportAndArrivalAirport(@PathVariable Airport departureAirport, @PathVariable Airport arrivalAirport) throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByDepartureAirportAndArrivalAirport(departureAirport, arrivalAirport);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
 //    @GetMapping("/{duration}")
@@ -94,19 +154,19 @@ public class TripController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateTrip(@PathVariable Trip trip) {
+    public ResponseEntity<?> updateTrip(@PathVariable Trip trip) throws TripNotFoundException {
         tripService.updateTrip(trip);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteTrip(@PathVariable UUID id) {
+    public ResponseEntity<?> deleteTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.deleteTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreTrip(@PathVariable UUID id) {
+    public ResponseEntity<?> restoreTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.restoreTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

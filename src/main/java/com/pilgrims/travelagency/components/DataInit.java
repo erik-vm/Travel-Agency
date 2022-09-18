@@ -68,7 +68,7 @@ public class DataInit {
 //        populateDBWithCities();
 //        populateDBWithAirports();
 //        populateDBWithHotels();
-        populateDBWithTrips();
+//        populateDBWithTrips();
     }
 
     // PRIVATE METHODS //

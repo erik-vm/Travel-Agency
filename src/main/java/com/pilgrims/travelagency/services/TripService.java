@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.TripNotFoundException;
 import com.pilgrims.travelagency.models.*;
 
 import java.util.Date;
@@ -25,35 +26,35 @@ public interface TripService {
      *
      * @return list of trips
      */
-    List<Trip> findAllTrips();
+    List<Trip> findAllTrips() throws TripNotFoundException;
 
     /**
      * To find a trip by id
      * @param id id
      * @return trip
      */
-    Trip findTripById(UUID id);
+    Trip findTripById(UUID id) throws TripNotFoundException;
 
     /**
      * To update existing trip
      *
      * @param trip trip
      */
-    void updateTrip(Trip trip);
+    void updateTrip(Trip trip) throws TripNotFoundException;
 
     /**
      * To delete existing trip
      *
      * @param id id
      */
-    void deleteTrip(UUID id);
+    void deleteTrip(UUID id) throws TripNotFoundException;
 
     /**
      * To restore a not active trip by its id
      *
      * @param id id of trip
      */
-    void restoreTrip(UUID id);
+    void restoreTrip(UUID id) throws TripNotFoundException;
 
 //    /**
 //     * To find trip by country
@@ -92,7 +93,7 @@ public interface TripService {
 //     * @param departureCity City
 //     * @return list of trips
 //     */
-    List<Airport> findByDepartureCity(City departureCity);
+    List<Trip> findByDepartureCity(City departureCity) throws TripNotFoundException;
 
     /**
      * To find trips to arrival city
@@ -100,7 +101,7 @@ public interface TripService {
      * @param arrivalCity City
      * @return list of trips
      */
-    List<Airport> findByArrivalCity(City arrivalCity);
+    List<Trip> findByArrivalCity(City arrivalCity) throws TripNotFoundException;
 
     /**
      * To find trips from departure airport
@@ -108,7 +109,7 @@ public interface TripService {
      * @param departureAirport Airport
      * @return list of trips
      */
-    List<Trip> findByDepartureAirport(Airport departureAirport);
+    List<Trip> findByDepartureAirport(Airport departureAirport) throws TripNotFoundException;
 
     /**
      * To find trips to arrival airport
@@ -116,7 +117,7 @@ public interface TripService {
      * @param arrivalAirport Airport
      * @return list of trips
      */
-    List<Trip> findByArrivalAirport(Airport arrivalAirport);
+    List<Trip> findByArrivalAirport(Airport arrivalAirport) throws TripNotFoundException;
 
     /**
      * To find trips from departure airport to arrival airport
@@ -125,7 +126,7 @@ public interface TripService {
      * @param arrivalAirport Airport
      * @return list of trips
      */
-    List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport);
+    List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport) throws TripNotFoundException;
 
     /**
      * To find trips from departure city to arrival city
@@ -134,5 +135,5 @@ public interface TripService {
      * @param arrivalCity City
      * @return list of trips
      */
-    List<Airport> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity);
+    List<Trip> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity) throws TripNotFoundException;
 }
