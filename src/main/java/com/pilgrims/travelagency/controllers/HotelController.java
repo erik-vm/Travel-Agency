@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.HotelNotFoundException;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
@@ -64,7 +65,7 @@ public class HotelController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<?> findHotelsByName(@PathVariable String name) {
+    public ResponseEntity<?> findHotelsByName(@PathVariable String name) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

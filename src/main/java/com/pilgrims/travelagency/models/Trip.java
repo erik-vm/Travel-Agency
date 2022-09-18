@@ -54,6 +54,7 @@ public class Trip extends Auditable<String> implements Serializable {
 
     private double priceForAdult;
     private double priceForChild;
+    private double totalPrice;
 
     private int numberOfBedsForAdults;
     private int numberOfBedsForChildren;
@@ -63,8 +64,8 @@ public class Trip extends Auditable<String> implements Serializable {
 
     private int timesBooked;
 
-//    @ManyToMany(mappedBy = "tripsBooked")
-//    List<User> bookedByUsers = new ArrayList<>();
+    @ManyToMany(mappedBy = "tripsBooked")
+    List<User> bookedByUsers = new ArrayList<>();
 
 
 

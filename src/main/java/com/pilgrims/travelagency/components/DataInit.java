@@ -3,15 +3,21 @@ package com.pilgrims.travelagency.components;
 import com.github.javafaker.Faker;
 import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
 import com.pilgrims.travelagency.exceptions.ContinentNotFoundException;
+import com.pilgrims.travelagency.exceptions.HotelNotFoundException;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.time.Year;
 import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import static com.pilgrims.travelagency.models.HotelBasis.*;
 import static com.pilgrims.travelagency.models.HotelStandard.*;
 import static com.pilgrims.travelagency.utils.Constants.Security.*;
 
@@ -46,10 +52,14 @@ public class DataInit {
 
     @Autowired
     private HotelService hotelService;
+
+    @Autowired
+    private TripService tripService;
+
     private Faker faker = new Faker();
 
     @PostConstruct
-    public void init() throws AuthorityNotFoundException, ContinentNotFoundException {
+    public void init() throws AuthorityNotFoundException, ContinentNotFoundException, HotelNotFoundException {
 //        initAuthorityData();
 //        initUserData();
 //        populateDBWithUsers();
@@ -58,6 +68,7 @@ public class DataInit {
 //        populateDBWithCities();
 //        populateDBWithAirports();
 //        populateDBWithHotels();
+        populateDBWithTrips();
     }
 
     // PRIVATE METHODS //
@@ -317,9 +328,13 @@ public class DataInit {
             hotel.setDescription(faker.lorem().sentence(20));
             hotelService.createHotel(hotel);
         }
+        Hotel tent = new Hotel();
+        tent.setName("Tent");
+        tent.setHotelStandard(ONE_STAR);
+        hotelService.createHotel(tent);
     }
 
-    private void populateDBWithTrips(){
+    private void populateDBWithTrips() throws HotelNotFoundException {
         for (int i = 0; i<50; i++) {
             Airport departureAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));
             Airport destinationAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));
@@ -328,9 +343,38 @@ public class DataInit {
             trip.setDepartureCity(departureAirport.getCity());
             trip.setArrivalAirport(destinationAirport);
             trip.setArrivalCity(destinationAirport.getCity());
-            if(hotelService.findHotelsByCity(destinationAirport.getCity()) != null){
-            trip.setArrivalHotel(hotelService.findHotelsByCity(destinationAirport.getCity()).get((int) Math.abs(Math.random()* hotelService.findHotelsByCity(destinationAirport.getCity()).size())));
-        }
+            int hotelBasisPicker = (int)Math.abs(Math.random()*5);
+            switch (hotelBasisPicker){
+                case 0 -> trip.setHotelBasis(RO);
+                case 1 -> trip.setHotelBasis(BB);
+                case 2 -> trip.setHotelBasis(HB);
+                case 3 -> trip.setHotelBasis(FB);
+                case 4 -> trip.setHotelBasis(AI);
+            }
+            if(hotelService.findHotelsByCity(destinationAirport.getCity()).isEmpty()){
+                trip.setArrivalHotel(hotelService.findHotelByName("Tent"));
+                trip.setHotelBasis(RO);
+            }else {
+                trip.setArrivalHotel(hotelService.findHotelsByCity(destinationAirport.getCity()).get((int) Math.abs(Math.random()* hotelService.findHotelsByCity(destinationAirport.getCity()).size())));
+            }
+            Date depDate = faker.date().between(new Date(), java.util.Date.from(LocalDate.of(2023, 12, 31).atStartOfDay()
+                    .atZone(ZoneId.systemDefault())
+                    .toInstant()));
+            int tripDuration = ((int)Math.abs(Math.random()*14))+1;
+            trip.setDepartureDate(depDate);
+            Calendar returnDate  = Calendar.getInstance();
+            returnDate.setTime(depDate);
+            returnDate.add(Calendar.DAY_OF_MONTH, tripDuration);
+            trip.setReturnDate(returnDate.getTime());
+            trip.setDurationInDays(tripDuration);
+            double priceForAdult = faker.number().randomDouble(2,100, 5000);
+            trip.setPriceForAdult(priceForAdult);
+            trip.setPriceForChild(priceForAdult/1.2);
+            trip.setNumberOfBedsForAdults(faker.number().numberBetween(1,5));
+            trip.setNumberOfBedsForChildren(faker.number().numberBetween(1,5));
+            trip.setPromoted(priceForAdult < 2000 && tripDuration > 7);
+            trip.setActive(true);
+            tripService.createTrip(trip);
         }
     }
 }

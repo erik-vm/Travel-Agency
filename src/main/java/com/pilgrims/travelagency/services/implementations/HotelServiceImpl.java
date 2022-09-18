@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.exceptions.HotelNotFoundException;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
@@ -47,8 +48,11 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel findHotelByName(String name) {
+    public Hotel findHotelByName(String name) throws HotelNotFoundException {
         Optional<Hotel> optionalHotel = hotelRepository.findByName(name);
+        if (optionalHotel.isEmpty()){
+            throw new HotelNotFoundException(name);
+        }
         return optionalHotel.get();
     }
 

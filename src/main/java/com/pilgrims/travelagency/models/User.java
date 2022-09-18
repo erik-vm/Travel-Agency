@@ -45,7 +45,7 @@ public class User extends Auditable<String> implements Serializable {
 
     private boolean isActive;
 
-//    @ManyToMany
-//    @JoinTable(name = "booked_trips", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
-//    private List<Trip> tripsBooked = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "booked_trips", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
+    private List<Trip> tripsBooked = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.HotelNotFoundException;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Country;
 import com.pilgrims.travelagency.models.Hotel;
@@ -42,7 +43,7 @@ public interface HotelService {
      * @param name Name
      * @return Hotel
      */
-    Hotel findHotelByName(String name);
+    Hotel findHotelByName(String name) throws HotelNotFoundException;
 
     /**
      * To find a hotel by id
