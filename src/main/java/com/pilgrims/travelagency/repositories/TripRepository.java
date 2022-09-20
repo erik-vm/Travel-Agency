@@ -25,4 +25,8 @@ public interface TripRepository extends JpaRepository<Trip, UUID> {
 
     List<Trip> findByArrivalAirport(Airport arrivalAirport);
     List<Trip> findByDepartureAirportAndArrivalAirport(Airport departureAirport, Airport arrivalAirport);
+
+    List<Trip> findByPromoted(boolean isPromoted);
+
+
 }

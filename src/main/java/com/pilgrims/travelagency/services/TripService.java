@@ -136,4 +136,14 @@ public interface TripService {
      * @return list of trips
      */
     List<Trip> findByDepartureCityAndArrivalCity(City departureCity, City arrivalCity) throws TripNotFoundException;
+
+    /**
+     * To find promoted trips
+     *
+     * @param isPromoted boolean
+     * @return list of trips
+     */
+    List<Trip> findByPromoted(boolean isPromoted) throws TripNotFoundException;
+
+
 }

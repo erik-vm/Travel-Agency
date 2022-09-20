@@ -44,6 +44,15 @@ public class TripController {
         return new ResponseEntity<>(trip, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/promoted")
+    public ResponseEntity<?> findPromotedTrips() throws TripNotFoundException {
+        List <Trip> tripList = tripService.findByPromoted(true);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+        return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
+    }
+
     @GetMapping("/departure_city/{city}")
     public ResponseEntity<?> findTripByDepartureCity(@PathVariable City city) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureCity(city);
@@ -154,7 +163,7 @@ public class TripController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateTrip(@PathVariable Trip trip) throws TripNotFoundException {
+    public ResponseEntity<?> updateTrip(@RequestBody Trip trip) throws TripNotFoundException {
         tripService.updateTrip(trip);
         return new ResponseEntity<>(HttpStatus.OK);
     }

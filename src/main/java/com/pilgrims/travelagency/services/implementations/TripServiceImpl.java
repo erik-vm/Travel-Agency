@@ -121,5 +121,13 @@ public class TripServiceImpl implements TripService {
         return tripRepository.findByDepartureCityAndArrivalCity(departureCity, arrivalCity);
     }
 
+    @Override
+    public List<Trip> findByPromoted(boolean isPromoted) throws TripNotFoundException {
+        if (tripRepository.findByPromoted(true).isEmpty()){
+            throw new TripNotFoundException();
+                    }
+        return tripRepository.findByPromoted(true);
+    }
+
 
 }
