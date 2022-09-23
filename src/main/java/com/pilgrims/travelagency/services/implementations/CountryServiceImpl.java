@@ -1,5 +1,7 @@
 package com.pilgrims.travelagency.services.implementations;
 
+import com.pilgrims.travelagency.exceptions.ContinentNotFoundException;
+import com.pilgrims.travelagency.exceptions.CountryNotFoundException;
 import com.pilgrims.travelagency.models.City;
 import com.pilgrims.travelagency.models.Continent;
 import com.pilgrims.travelagency.models.Country;
@@ -34,44 +36,46 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<Country> findCountriesByCity(City city) {
-        return null;
-    }
-
-    @Override
-    public Country findCountryByName(String name) {
+    public Country findCountryByName(String name) throws CountryNotFoundException {
         Optional<Country> optionalCountry = countryRepository.findByName(name);
+        if (optionalCountry.isEmpty()){
+            throw new CountryNotFoundException(name);
+        }
         return optionalCountry.get();
     }
 
-
-
     @Override
-    public void updateCountry(Country country) {
+    public void updateCountry(Country country) throws CountryNotFoundException {
         if (findCountryById(country.getId()) != null) {
             countryRepository.saveAndFlush(country);
         }
     }
 
-    public Country findCountryById (UUID id) {
+    public Country findCountryById (UUID id) throws CountryNotFoundException {
         Optional<Country> optionalCountry = countryRepository.findById(id);
+        if (optionalCountry.isEmpty()){
+            throw new CountryNotFoundException(id);
+        }
         return optionalCountry.get();
     }
 
     @Override
-    public List<Country> findAllCountries() {
+    public List<Country> findAllCountries() throws CountryNotFoundException {
+        if (countryRepository.findAll().isEmpty()){
+            throw new CountryNotFoundException();
+        }
         return countryRepository.findAll();
     }
 
     @Override
-    public void deleteCountryById(UUID id) {
+    public void deleteCountryById(UUID id) throws CountryNotFoundException {
         Country country = findCountryById(id);
         country.setActive(false);
         countryRepository.saveAndFlush(country);
     }
 
     @Override
-    public void restoreCountryById(UUID id) {
+    public void restoreCountryById(UUID id) throws CountryNotFoundException {
         Country country = findCountryById(id);
         country.setActive(true);
         countryRepository.saveAndFlush(country);
@@ -79,7 +83,10 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<Country> findAllCountriesByContinent(Continent continent) {
+    public List<Country> findAllCountriesByContinent(Continent continent) throws CountryNotFoundException {
+        if (countryRepository.findAllByContinent(continent).isEmpty()){
+            throw new CountryNotFoundException();
+        }
         return countryRepository.findAllByContinent(continent);
     }
 

@@ -28,7 +28,7 @@ public interface HotelService {
      * @param city City
      * @return List of hotels
      */
-    List<Hotel> findHotelsByCity(City city);
+    List<Hotel> findHotelsByCity(City city) throws HotelNotFoundException;
 
 
     /**
@@ -36,7 +36,7 @@ public interface HotelService {
      * @param hotelStandard Standard
      * @return List of hotels
      */
-    List<Hotel> findHotelsByStandard(HotelStandard hotelStandard);
+    List<Hotel> findHotelsByStandard(HotelStandard hotelStandard) throws HotelNotFoundException;
 
     /**
      * To find a hotel by name
@@ -50,32 +50,32 @@ public interface HotelService {
      * @param id id
      * @return hotel
      */
-    Hotel findHotelById(UUID id);
+    Hotel findHotelById(UUID id) throws HotelNotFoundException;
 
     /**
      * To find all hotels
      * @return List of hotels
      */
-    List<Hotel> findAllHotels();
+    List<Hotel> findAllHotels() throws HotelNotFoundException;
 
     /**
      * To update a existing Hotel
      *
      * @param hotel Hotel
      */
-    void updateHotel(Hotel hotel);
+    void updateHotel(Hotel hotel) throws HotelNotFoundException;
 
     /**
      * To delete a hotel by its ID
      * @param id id of hotel
      */
-    void deleteHotelById(UUID id);
+    void deleteHotelById(UUID id) throws HotelNotFoundException;
 
     /**
      * To restore a not active hotel by its ID
      * @param id id of hotel
      */
-    void restoreHotelById(UUID id);
+    void restoreHotelById(UUID id) throws HotelNotFoundException;
 
 
 }

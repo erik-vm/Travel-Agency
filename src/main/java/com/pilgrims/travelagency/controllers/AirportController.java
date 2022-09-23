@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.AirportNotFoundException;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,12 @@ public class AirportController {
     private AirportService airportService;
 
     @GetMapping
-    public List<Airport> findAllAirports() {
+    public List<Airport> findAllAirports() throws AirportNotFoundException {
         return airportService.findAllAirports();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findAirportById(@PathVariable UUID id) {
+    @GetMapping("/id={id}")
+    public ResponseEntity<?> findAirportById(@PathVariable UUID id) throws AirportNotFoundException {
         Airport airport = airportService.findAirportById(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -41,8 +42,8 @@ public class AirportController {
         return new ResponseEntity<>(airport, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/{city}")
-    public ResponseEntity<?> findAirportsByCity(@PathVariable City city) {
+    @GetMapping("/city")
+    public ResponseEntity<?> findAirportsByCity(@RequestBody City city) throws AirportNotFoundException {
         List<Airport> list = airportService.findAirportsByCity(city);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -50,18 +51,11 @@ public class AirportController {
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/{country}")
-    public ResponseEntity<?> findAirportsByCountry(@PathVariable Country country) {
-        List<Airport> list = airportService.findAirportsByCountry(country);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(list, headers, HttpStatus.OK);
-    }
 
 
-    @GetMapping("/{name}")
-    public ResponseEntity<?> findAirportsByName(@PathVariable String name) {
+
+    @GetMapping("/name={name}")
+    public ResponseEntity<?> findAirportsByName(@PathVariable String name) throws AirportNotFoundException {
         Airport airport = airportService.findAirportByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -76,19 +70,19 @@ public class AirportController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateAirport(@PathVariable Airport airport) {
+    public ResponseEntity<?> updateAirport(@RequestBody Airport airport) throws AirportNotFoundException {
         airportService.updateAirport(airport);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteAirport(@PathVariable UUID id) {
+    @GetMapping("/delete/id={id}")
+    public ResponseEntity<?> deleteAirport(@PathVariable UUID id) throws AirportNotFoundException {
         airportService.deleteAirportById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreAirport(@PathVariable UUID id) {
+    @GetMapping("/restore/id={id}")
+    public ResponseEntity<?> restoreAirport(@PathVariable UUID id) throws AirportNotFoundException {
         airportService.restoreAirportById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -1,9 +1,7 @@
 package com.pilgrims.travelagency.components;
 
 import com.github.javafaker.Faker;
-import com.pilgrims.travelagency.exceptions.AuthorityNotFoundException;
-import com.pilgrims.travelagency.exceptions.ContinentNotFoundException;
-import com.pilgrims.travelagency.exceptions.HotelNotFoundException;
+import com.pilgrims.travelagency.exceptions.*;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -260,7 +258,7 @@ public class DataInit {
         }
     }
 
-    private void populateDBWithCities() throws ContinentNotFoundException {
+    private void populateDBWithCities() throws ContinentNotFoundException, CountryNotFoundException {
 
         //Country lists by continent
 
@@ -301,7 +299,7 @@ public class DataInit {
         }
     }
 
-    private void populateDBWithAirports() {
+    private void populateDBWithAirports() throws CityNotFoundException {
         for (int i = 0; i < 100; i++) {
             Airport airport = new Airport();
             airport.setActive(true);
@@ -311,7 +309,7 @@ public class DataInit {
         }
     }
 
-    private void populateDBWithHotels() {
+    private void populateDBWithHotels() throws CityNotFoundException {
         for (int i = 0; i<100; i++){
             Hotel hotel = new Hotel();
             hotel.setName(faker.name().name() + " Hotel");
@@ -334,7 +332,7 @@ public class DataInit {
         hotelService.createHotel(tent);
     }
 
-    private void populateDBWithTrips() throws HotelNotFoundException {
+    private void populateDBWithTrips() throws HotelNotFoundException, AirportNotFoundException {
         for (int i = 0; i<50; i++) {
             Airport departureAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));
             Airport destinationAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));

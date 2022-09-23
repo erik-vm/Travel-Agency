@@ -45,13 +45,20 @@ public class ContinentServiceImpl implements ContinentService {
     }
 
     @Override
-    public Continent findContinentById(UUID id) {
-        return null;
+    public Continent findContinentById(UUID id) throws ContinentNotFoundException {
+        Optional<Continent> continentOptional = continentRepository.findById(id);
+        if (continentOptional.isEmpty()){
+            throw new ContinentNotFoundException(id);
+        }
+       return continentOptional.get();
     }
 
     @Override
-    public List<Continent> findAllContinents() {
-        return null;
+    public List<Continent> findAllContinents() throws ContinentNotFoundException {
+        if (continentRepository.findAll().isEmpty()){
+            throw new ContinentNotFoundException();
+        }
+        return continentRepository.findAll();
     }
 
 }

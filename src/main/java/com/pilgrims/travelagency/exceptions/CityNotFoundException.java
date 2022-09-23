@@ -14,11 +14,15 @@ public class CityNotFoundException extends Exception{
     private static final long serialVersionUID = 1L;
 
     public CityNotFoundException() {
-        super("City not found!");
+        super("Cities not found!");
     }
 
     public CityNotFoundException(UUID uuid) {
         super(String.format("City not found with id= %s!", uuid));
+    }
+
+    public CityNotFoundException(String name) {
+        super(String.format("City not found with name= %s!", name));
     }
 
 

@@ -21,8 +21,8 @@ public class AirportNotFoundException extends Exception{
         super(String.format("Airport not found with id= %s!", uuid));
     }
 
-    public AirportNotFoundException(City city) {
-        super(String.format("Airport not found with searched city %s!", city.getName()));
+    public AirportNotFoundException(String name) {
+        super(String.format("Airport not found with searched name %s!", name));
     }
 
 }

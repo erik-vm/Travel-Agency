@@ -41,7 +41,10 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<Authority> findAllAuthorities() {
+    public List<Authority> findAllAuthorities() throws Exception {
+        if (authorityRepository.findAll().isEmpty()){
+            throw new Exception("Authorities not found.");
+        }
         return authorityRepository.findAll();
     }
 

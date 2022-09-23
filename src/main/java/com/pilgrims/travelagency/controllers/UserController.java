@@ -28,12 +28,12 @@ public class UserController {
     public UserService userService;
 
     @GetMapping
-    public List<User> findAllUsers() {
+    public List<User> findAllUsers() throws UserNotFoundException {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable UUID id) {
+    @GetMapping("/id={id}")
+    public ResponseEntity<?> findUserById(@PathVariable UUID id) throws UserNotFoundException {
         User user = userService.findUserById(id);
 
         HttpHeaders headers = new HttpHeaders();

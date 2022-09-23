@@ -1,5 +1,7 @@
 package com.pilgrims.travelagency.services;
 
+import com.pilgrims.travelagency.exceptions.ContinentNotFoundException;
+import com.pilgrims.travelagency.exceptions.CountryNotFoundException;
 import com.pilgrims.travelagency.models.*;
 
 import java.util.List;
@@ -14,55 +16,48 @@ public interface CountryService {
      */
     void createCountry(Country country);
 
-    /**
-     * To find a country by city
-     * @param city City
-     * @return List of countries
-     */
-
-    List<Country> findCountriesByCity(City city);
 
     /**
      * To find a country by name
      * @param name Name
      * @return Country
      */
-    Country findCountryByName(String name);
+    Country findCountryByName(String name) throws CountryNotFoundException;
 
     /**
      * To find a country by id
      * @param id id
      * @return country
      */
-    Country findCountryById(UUID id);
+    Country findCountryById(UUID id) throws  CountryNotFoundException;
 
     /**
      * To find all countries
      * @return List of countries
      */
-    List<Country> findAllCountries();
+    List<Country> findAllCountries() throws CountryNotFoundException;
 
     /**
      * To update an existing Country
      *
      * @param country Country
      */
-    void updateCountry(Country country);
+    void updateCountry(Country country) throws  CountryNotFoundException;
 
     /**
      * To delete a country by its ID
      * @param id id of country
      */
-    void deleteCountryById(UUID id);
+    void deleteCountryById(UUID id) throws  CountryNotFoundException;
 
     /**
      * To restore a not active country by its ID
      * @param id id of country
      */
-    void restoreCountryById(UUID id);
+    void restoreCountryById(UUID id) throws  CountryNotFoundException;
 
 
-    List<Country> findAllCountriesByContinent(Continent continent);
+    List<Country> findAllCountriesByContinent(Continent continent) throws CountryNotFoundException;
 
 
 }

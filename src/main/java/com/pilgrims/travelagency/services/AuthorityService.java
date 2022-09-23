@@ -34,7 +34,7 @@ public interface AuthorityService {
      *
      * @return list of authorities
      */
-    List<Authority> findAllAuthorities();
+    List<Authority> findAllAuthorities() throws Exception;
 
     Authority findAuthorityById(UUID id) throws AuthorityNotFoundException;
 

@@ -36,15 +36,20 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> findHotelsByCity(City city) {
+    public List<Hotel> findHotelsByCity(City city) throws HotelNotFoundException {
+        if (hotelRepository.findByCity(city).isEmpty()){
+            throw new HotelNotFoundException();
+        }
         return hotelRepository.findByCity(city);
     }
 
 
     @Override
-    public List<Hotel> findHotelsByStandard(HotelStandard hotelStandard) {
-        //return hotelRepository.findByHotelStandard(hotelStandard);
-        return null;
+    public List<Hotel> findHotelsByStandard(HotelStandard hotelStandard) throws HotelNotFoundException {
+        if (hotelRepository.findByHotelStandard(hotelStandard).isEmpty()){
+            throw new HotelNotFoundException();
+        }
+        return hotelRepository.findByHotelStandard(hotelStandard);
     }
 
     @Override
@@ -57,31 +62,37 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public void updateHotel(Hotel hotel) {
+    public void updateHotel(Hotel hotel) throws HotelNotFoundException {
         if (findHotelById(hotel.getId()) != null) {
             hotelRepository.saveAndFlush(hotel);
         }
     }
 
-    public Hotel findHotelById (UUID id) {
+    public Hotel findHotelById (UUID id) throws HotelNotFoundException {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        if (optionalHotel.isEmpty()){
+            throw new HotelNotFoundException(id);
+        }
         return optionalHotel.get();
     }
 
     @Override
-    public List<Hotel> findAllHotels() {
+    public List<Hotel> findAllHotels() throws HotelNotFoundException {
+        if (hotelRepository.findAll().isEmpty()){
+            throw new HotelNotFoundException();
+        }
         return hotelRepository.findAll();
     }
 
     @Override
-    public void deleteHotelById(UUID id) {
+    public void deleteHotelById(UUID id) throws HotelNotFoundException {
         Hotel hotel = findHotelById(id);
         hotel.setActive(false);
         hotelRepository.saveAndFlush(hotel);
     }
 
     @Override
-    public void restoreHotelById(UUID id) {
+    public void restoreHotelById(UUID id) throws HotelNotFoundException {
         Hotel hotel = findHotelById(id);
         hotel.setActive(true);
         hotelRepository.saveAndFlush(hotel);

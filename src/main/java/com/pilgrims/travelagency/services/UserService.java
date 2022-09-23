@@ -26,14 +26,14 @@ public interface UserService {
      * @param userName userName
      * @return User
      */
-    User findUserByUserName(String userName);
+    User findUserByUserName(String userName) throws UserNotFoundException;
 
     /**
      * To find User by its ID
      * @param id id of user
      * @return User
      */
-    User findUserById(UUID id);
+    User findUserById(UUID id) throws UserNotFoundException;
 
 
     /**
@@ -47,11 +47,11 @@ public interface UserService {
      *
      * @return list of all Users
      */
-    List<User> findAllUsers();
+    List<User> findAllUsers() throws UserNotFoundException;
 
     /**
      * To update an existing User
      * @param user user
      */
-    void updateUser (User user);
+    void updateUser (User user) throws UserNotFoundException;
 }

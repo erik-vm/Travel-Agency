@@ -34,7 +34,7 @@ public class TripController {
         return tripService.findAllTrips();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id={id}")
     public ResponseEntity<?> findTripById(@PathVariable UUID id) throws TripNotFoundException {
         Trip trip = tripService.findTripById(id);
 
@@ -168,13 +168,13 @@ public class TripController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/id={id}")
     public ResponseEntity<?> deleteTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.deleteTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
+    @GetMapping("/restore/id={id}")
     public ResponseEntity<?> restoreTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.restoreTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.CountryNotFoundException;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,12 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping
-    public List<Country> findAllCountries() {
+    public List<Country> findAllCountries() throws CountryNotFoundException {
         return countryService.findAllCountries();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findCountryById(@PathVariable UUID id) {
+    @GetMapping("/id={id}")
+    public ResponseEntity<?> findCountryById(@PathVariable UUID id) throws CountryNotFoundException {
         Country country = countryService.findCountryById(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -42,8 +43,8 @@ public class CountryController {
     }
 
 
-    @GetMapping("/{continent}")
-    public ResponseEntity<?> findCountryByContinent(@PathVariable Continent continent) {
+    @GetMapping("/continent")
+    public ResponseEntity<?> findCountryByContinent(@RequestBody Continent continent) throws CountryNotFoundException {
         List<Country> list = countryService.findAllCountriesByContinent(continent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -52,8 +53,8 @@ public class CountryController {
     }
 
 
-    @GetMapping("/{name}")
-    public ResponseEntity<?> findCountriesByName(@PathVariable String name) {
+    @GetMapping("/name={name}")
+    public ResponseEntity<?> findCountryByName(@PathVariable String name) throws CountryNotFoundException {
         Country country = countryService.findCountryByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -68,19 +69,19 @@ public class CountryController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateCountry(@PathVariable Country country) {
+    public ResponseEntity<?> updateCountry(@RequestBody Country country) throws CountryNotFoundException {
         countryService.updateCountry(country);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCountry(@PathVariable UUID id) {
+    @GetMapping("/delete/id={id}")
+    public ResponseEntity<?> deleteCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.deleteCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreCountry(@PathVariable UUID id) {
+    @GetMapping("/restore/id={id}")
+    public ResponseEntity<?> restoreCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.restoreCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

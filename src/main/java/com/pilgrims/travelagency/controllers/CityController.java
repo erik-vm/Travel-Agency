@@ -1,5 +1,6 @@
 package com.pilgrims.travelagency.controllers;
 
+import com.pilgrims.travelagency.exceptions.CityNotFoundException;
 import com.pilgrims.travelagency.models.*;
 import com.pilgrims.travelagency.services.AirportService;
 import com.pilgrims.travelagency.services.CityService;
@@ -28,12 +29,12 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping
-    public List<City> findAllCities() {
+    public List<City> findAllCities() throws CityNotFoundException {
         return cityService.findAllCities();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findCityById(@PathVariable UUID id) {
+    @GetMapping("/id={id}")
+    public ResponseEntity<?> findCityById(@PathVariable UUID id) throws CityNotFoundException {
         City city = cityService.findCityById(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -43,8 +44,8 @@ public class CityController {
     }
 
 
-    @GetMapping("/{country}")
-    public ResponseEntity<?> findCitiesByCountry(@PathVariable Country country) {
+    @GetMapping("/country")
+    public ResponseEntity<?> findCitiesByCountry(@RequestBody Country country) {
         List<City> list = cityService.findCitiesByCountry(country);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -54,7 +55,7 @@ public class CityController {
 
 
     @GetMapping("/{name}")
-    public ResponseEntity<?> findCitiesByName(@PathVariable String name) {
+    public ResponseEntity<?> findCityByName(@PathVariable String name) throws CityNotFoundException {
         City city = cityService.findCityByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -69,19 +70,19 @@ public class CityController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> updateCity(@PathVariable City city) {
+    public ResponseEntity<?> updateCity(@RequestBody City city) throws CityNotFoundException {
         cityService.updateCity(city);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCity(@PathVariable UUID id) {
+    @GetMapping("/delete/id={id}")
+    public ResponseEntity<?> deleteCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.deleteCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreCity(@PathVariable UUID id) {
+    @GetMapping("/restore/id={id}")
+    public ResponseEntity<?> restoreCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.restoreCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

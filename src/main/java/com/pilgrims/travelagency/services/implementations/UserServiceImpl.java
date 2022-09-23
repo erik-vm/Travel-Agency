@@ -46,14 +46,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserName(String userName) {
+    public User findUserByUserName(String userName) throws UserNotFoundException {
         Optional<User> optionalUser = userRepository.findByUserName(userName);
+        if (optionalUser.isEmpty()){
+            throw new UserNotFoundException(userName);
+        }
         return optionalUser.get();
     }
 
     @Override
-    public User findUserById(UUID id) {
+    public User findUserById(UUID id) throws UserNotFoundException {
         Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()){
+            throw new UserNotFoundException(id);
+        }
         return optionalUser.get();
     }
 
@@ -70,12 +76,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> findAllUsers() throws UserNotFoundException {
+        if (userRepository.findAll().isEmpty()){
+            throw new UserNotFoundException();
+        }
         return userRepository.findAll();
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user) throws UserNotFoundException {
         if (findUserById(user.getId()) != null) {
             userRepository.saveAndFlush(user);
         }

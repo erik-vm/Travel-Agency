@@ -32,13 +32,13 @@ public interface ContinentService {
      * @param id id
      * @return continent
      */
-    Continent findContinentById(UUID id);
+    Continent findContinentById(UUID id) throws ContinentNotFoundException;
 
     /**
      * To find all continents
      * @return List of continents
      */
-    List<Continent> findAllContinents();
+    List<Continent> findAllContinents() throws ContinentNotFoundException;
 
 
 
