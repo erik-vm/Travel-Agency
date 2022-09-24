@@ -53,7 +53,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/departure_city/{city}")
+    @GetMapping("/departure_city={city}")
     public ResponseEntity<?> findTripByDepartureCity(@PathVariable City city) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureCity(city);
 
@@ -63,7 +63,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/arrival_city/{city}")
+    @GetMapping("/arrival_city={city}")
     public ResponseEntity<?> findTripByArrivalCity(@PathVariable City city) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByArrivalCity(city);
 
@@ -73,7 +73,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/departure_city/{departureCity}/arrival_city/{arrivalCity}")
+    @GetMapping("/departure_city={departureCity}/arrival_city={arrivalCity}")
     public ResponseEntity<?> findTripByDepartureCityAndArrivalCity(@PathVariable City departureCity, @PathVariable City arrivalCity) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureCityAndArrivalCity(departureCity, arrivalCity);
 
@@ -82,7 +82,7 @@ public class TripController {
         headers.setDate(new Date().toInstant());
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
-    @GetMapping("/departure_airport/{airport}")
+    @GetMapping("/departure_airport={airport}")
     public ResponseEntity<?> findTripByDepartureAirport(@PathVariable Airport airport) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureAirport(airport);
 
@@ -92,7 +92,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/arrival_airport/{airport}")
+    @GetMapping("/arrival_airport={airport}")
     public ResponseEntity<?> findTripByArrivalAirport(@PathVariable Airport airport) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByArrivalAirport(airport);
 
@@ -102,7 +102,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/departure_airport/{departureAirport}/arrival_airport/{arrivalAirport}")
+    @GetMapping("/departure_airport={departureAirport}/arrival_airport={arrivalAirport}")
     public ResponseEntity<?> findTripByDepartureAirportAndArrivalAirport(@PathVariable Airport departureAirport, @PathVariable Airport arrivalAirport) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureAirportAndArrivalAirport(departureAirport, arrivalAirport);
 

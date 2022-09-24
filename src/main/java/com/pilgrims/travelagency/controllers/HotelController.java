@@ -31,8 +31,8 @@ public class HotelController {
     private HotelService hotelService;
 
     @GetMapping
-    public <Hotel> List<Hotel> findAllHotels() throws HotelNotFoundException {
-        return (List<Hotel>) hotelService.findAllHotels();
+    public  List<Hotel> findAllHotels() throws HotelNotFoundException {
+        return hotelService.findAllHotels();
     }
 
     @GetMapping("/id={id}")
