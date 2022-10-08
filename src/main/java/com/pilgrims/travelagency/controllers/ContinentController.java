@@ -24,11 +24,11 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping(name = "/continent")
+@RequestMapping("/continent")
 public class ContinentController {
 
     @Autowired
-    ContinentService continentService;
+    private ContinentService continentService;
 
     @GetMapping
     public List<Continent> getAllContinents() throws ContinentNotFoundException {

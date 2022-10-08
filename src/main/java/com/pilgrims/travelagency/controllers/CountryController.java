@@ -32,7 +32,7 @@ public class CountryController {
         return countryService.findAllCountries();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findCountryById(@PathVariable UUID id) throws CountryNotFoundException {
         Country country = countryService.findCountryById(id);
 
@@ -53,8 +53,8 @@ public class CountryController {
     }
 
 
-    @GetMapping("/name={name}")
-    public ResponseEntity<?> findCountryByName(@PathVariable String name) throws CountryNotFoundException {
+    @GetMapping("/find-by-name")
+    public ResponseEntity<?> findCountryByName(@RequestParam(name="name") String name) throws CountryNotFoundException {
         Country country = countryService.findCountryByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -74,13 +74,13 @@ public class CountryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/id={id}")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.deleteCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/id={id}")
+    @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.restoreCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
