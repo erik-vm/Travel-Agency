@@ -24,7 +24,7 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("/continent")
+@RequestMapping("/continent/{id}")
 public class ContinentController {
 
     @Autowired
@@ -44,7 +44,7 @@ public class ContinentController {
         return new ResponseEntity<>(continent, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/name")
+    @GetMapping("/name/{id}")
     ResponseEntity<?> findContinentByName(@PathVariable String continentName) throws ContinentNotFoundException {
         Continent continent = continentService.findContinentByName(continentName);
         HttpHeaders headers = new HttpHeaders();

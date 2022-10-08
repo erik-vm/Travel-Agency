@@ -21,7 +21,7 @@ import java.util.UUID;
  * @author Kimmo Pormann
  */
 @RestController
-@RequestMapping("/country")
+@RequestMapping("/country/{id}")
 public class CountryController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class CountryController {
     }
 
 
-    @GetMapping("/continent")
+    @GetMapping("/continent/{id}")
     public ResponseEntity<?> findCountryByContinent(@RequestBody Continent continent) throws CountryNotFoundException {
         List<Country> list = countryService.findAllCountriesByContinent(continent);
         HttpHeaders headers = new HttpHeaders();
@@ -68,19 +68,19 @@ public class CountryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public ResponseEntity<?> updateCountry(@RequestBody Country country) throws CountryNotFoundException {
         countryService.updateCountry(country);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.deleteCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/")
+    @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.restoreCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);

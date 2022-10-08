@@ -23,7 +23,7 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("/trip")
+@RequestMapping("/trip/{id}")
 public class TripController {
 
     @Autowired
@@ -53,7 +53,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/departure_city")
+    @GetMapping("/departure_city/{id}")
     public ResponseEntity<?> findTripByDepartureCity(@PathVariable City city) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByDepartureCity(city);
 
@@ -63,7 +63,7 @@ public class TripController {
         return new ResponseEntity<>(tripList, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/arrival_city")
+    @GetMapping("/arrival_city/{id}")
     public ResponseEntity<?> findTripByArrivalCity(@PathVariable City city) throws TripNotFoundException {
         List <Trip> tripList = tripService.findByArrivalCity(city);
 
@@ -162,19 +162,19 @@ public class TripController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public ResponseEntity<?> updateTrip(@RequestBody Trip trip) throws TripNotFoundException {
         tripService.updateTrip(trip);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.deleteTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/")
+    @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreTrip(@PathVariable UUID id) throws TripNotFoundException {
         tripService.restoreTrip(id);
         return new ResponseEntity<>(HttpStatus.OK);

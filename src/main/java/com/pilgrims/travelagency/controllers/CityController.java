@@ -22,7 +22,7 @@ import java.util.UUID;
  * @author Kimmo Pormann
  */
 @RestController
-@RequestMapping("/city")
+@RequestMapping("/city/{id}")
 public class CityController {
 
     @Autowired
@@ -44,7 +44,7 @@ public class CityController {
     }
 
 
-    @GetMapping("/country")
+    @GetMapping("/country/{id}")
     public ResponseEntity<?> findCitiesByCountry(@RequestBody Country country) {
         List<City> list = cityService.findCitiesByCountry(country);
         HttpHeaders headers = new HttpHeaders();
@@ -54,7 +54,7 @@ public class CityController {
     }
 
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{id}")
     public ResponseEntity<?> findCityByName(@PathVariable String name) throws CityNotFoundException {
         City city = cityService.findCityByName(name);
         HttpHeaders headers = new HttpHeaders();
@@ -69,19 +69,19 @@ public class CityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public ResponseEntity<?> updateCity(@RequestBody City city) throws CityNotFoundException {
         cityService.updateCity(city);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.deleteCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/")
+    @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.restoreCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);

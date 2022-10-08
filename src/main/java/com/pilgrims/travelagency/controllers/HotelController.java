@@ -24,7 +24,7 @@ import java.util.UUID;
  * @author Ott Pikk
  */
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping("/hotel/{id}")
 public class HotelController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class HotelController {
         return new ResponseEntity<>(hotel, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/city")
+    @GetMapping("/city/{id}")
     public ResponseEntity<?> findHotelsByCity(@RequestBody City city) throws HotelNotFoundException {
         List<Hotel> list = hotelService.findHotelsByCity(city);
         HttpHeaders headers = new HttpHeaders();
@@ -64,7 +64,7 @@ public class HotelController {
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/name")
+    @GetMapping("/name/{id}")
     public ResponseEntity<?> findHotelsByName(@PathVariable String name) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelByName(name);
         HttpHeaders headers = new HttpHeaders();
@@ -79,19 +79,19 @@ public class HotelController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     public ResponseEntity<?> updateHotel(@RequestBody Hotel hotel) throws HotelNotFoundException {
         hotelService.updateHotel(hotel);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/")
+    @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteHotel(@PathVariable UUID id) throws HotelNotFoundException {
         hotelService.deleteHotelById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/")
+    @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreHotel(@PathVariable UUID id) throws HotelNotFoundException {
         hotelService.restoreHotelById(id);
         return new ResponseEntity<>(HttpStatus.OK);
