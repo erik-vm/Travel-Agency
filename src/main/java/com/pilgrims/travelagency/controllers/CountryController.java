@@ -74,13 +74,13 @@ public class CountryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/")
     public ResponseEntity<?> deleteCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.deleteCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
+    @GetMapping("/restore/")
     public ResponseEntity<?> restoreCountry(@PathVariable UUID id) throws CountryNotFoundException {
         countryService.restoreCountryById(id);
         return new ResponseEntity<>(HttpStatus.OK);

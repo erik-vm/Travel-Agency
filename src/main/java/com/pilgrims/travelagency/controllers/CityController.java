@@ -33,7 +33,7 @@ public class CityController {
         return cityService.findAllCities();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/id")
     public ResponseEntity<?> findCityById(@PathVariable UUID id) throws CityNotFoundException {
         City city = cityService.findCityById(id);
 
@@ -75,13 +75,13 @@ public class CityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/id={id}")
+    @GetMapping("/delete/")
     public ResponseEntity<?> deleteCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.deleteCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/id={id}")
+    @GetMapping("/restore/")
     public ResponseEntity<?> restoreCity(@PathVariable UUID id) throws CityNotFoundException {
         cityService.restoreCityById(id);
         return new ResponseEntity<>(HttpStatus.OK);

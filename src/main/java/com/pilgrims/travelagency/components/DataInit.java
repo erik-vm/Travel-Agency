@@ -66,14 +66,14 @@ public class DataInit {
 //        populateDBWithCities();
 //        populateDBWithAirports();
 //        populateDBWithHotels();
-//        populateDBWithTrips();
+  //      populateDBWithTrips();
     }
 
     // PRIVATE METHODS //
 
 
     private void initAuthorityData() {
-        System.out.println("Starting initializing Authority..");
+        System.out.println("Starting initializing Authority...");
         Authority authorityAdmin = new Authority();
         authorityAdmin.setName(AUTHORITY_ADMIN);
         authorityService.createAuthority(authorityAdmin);

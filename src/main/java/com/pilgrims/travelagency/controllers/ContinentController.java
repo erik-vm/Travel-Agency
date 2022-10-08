@@ -35,7 +35,7 @@ public class ContinentController {
         return continentService.findAllContinents();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/id")
     ResponseEntity<?> findContinentById(@PathVariable UUID id) throws ContinentNotFoundException {
         Continent continent = continentService.findContinentById(id);
         HttpHeaders headers = new HttpHeaders();
@@ -44,7 +44,7 @@ public class ContinentController {
         return new ResponseEntity<>(continent, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/name={continentName}")
+    @GetMapping("/name")
     ResponseEntity<?> findContinentByName(@PathVariable String continentName) throws ContinentNotFoundException {
         Continent continent = continentService.findContinentByName(continentName);
         HttpHeaders headers = new HttpHeaders();

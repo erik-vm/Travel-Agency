@@ -32,7 +32,7 @@ public class AirportController {
         return airportService.findAllAirports();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/id")
     public ResponseEntity<?> findAirportById(@PathVariable UUID id) throws AirportNotFoundException {
         Airport airport = airportService.findAirportById(id);
 
@@ -54,7 +54,7 @@ public class AirportController {
 
 
 
-    @GetMapping("/name={name}")
+    @GetMapping("/name")
     public ResponseEntity<?> findAirportsByName(@PathVariable String name) throws AirportNotFoundException {
         Airport airport = airportService.findAirportByName(name);
         HttpHeaders headers = new HttpHeaders();
@@ -75,13 +75,13 @@ public class AirportController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/id={id}")
+    @GetMapping("/delete/")
     public ResponseEntity<?> deleteAirport(@PathVariable UUID id) throws AirportNotFoundException {
         airportService.deleteAirportById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/id={id}")
+    @GetMapping("/restore/")
     public ResponseEntity<?> restoreAirport(@PathVariable UUID id) throws AirportNotFoundException {
         airportService.restoreAirportById(id);
         return new ResponseEntity<>(HttpStatus.OK);

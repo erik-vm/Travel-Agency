@@ -35,7 +35,7 @@ public class HotelController {
         return hotelService.findAllHotels();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/id")
     public ResponseEntity<?> findHotelById(@PathVariable UUID id) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelById(id);
 
@@ -64,7 +64,7 @@ public class HotelController {
         return new ResponseEntity<>(list, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/name={name}")
+    @GetMapping("/name")
     public ResponseEntity<?> findHotelsByName(@PathVariable String name) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelByName(name);
         HttpHeaders headers = new HttpHeaders();
@@ -85,13 +85,13 @@ public class HotelController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/delete/id={id}")
+    @GetMapping("/delete/")
     public ResponseEntity<?> deleteHotel(@PathVariable UUID id) throws HotelNotFoundException {
         hotelService.deleteHotelById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/id={id}")
+    @GetMapping("/restore/")
     public ResponseEntity<?> restoreHotel(@PathVariable UUID id) throws HotelNotFoundException {
         hotelService.restoreHotelById(id);
         return new ResponseEntity<>(HttpStatus.OK);

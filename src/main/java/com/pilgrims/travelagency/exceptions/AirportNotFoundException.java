@@ -1,6 +1,4 @@
 package com.pilgrims.travelagency.exceptions;
-
-import com.pilgrims.travelagency.models.Airport;
 import com.pilgrims.travelagency.models.City;
 
 import java.util.UUID;
