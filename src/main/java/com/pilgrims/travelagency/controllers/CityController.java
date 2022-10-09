@@ -22,7 +22,7 @@ import java.util.UUID;
  * @author Kimmo Pormann
  */
 @RestController
-@RequestMapping("/city/{id}")
+@RequestMapping("/city")
 public class CityController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class CityController {
         return cityService.findAllCities();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findCityById(@PathVariable UUID id) throws CityNotFoundException {
         City city = cityService.findCityById(id);
 
@@ -44,7 +44,7 @@ public class CityController {
     }
 
 
-    @GetMapping("/country/{id}")
+    @PostMapping("/country")
     public ResponseEntity<?> findCitiesByCountry(@RequestBody Country country) {
         List<City> list = cityService.findCitiesByCountry(country);
         HttpHeaders headers = new HttpHeaders();
@@ -54,8 +54,8 @@ public class CityController {
     }
 
 
-    @GetMapping("/name/{id}")
-    public ResponseEntity<?> findCityByName(@PathVariable String name) throws CityNotFoundException {
+    @GetMapping("/find-by-name}")
+    public ResponseEntity<?> findCityByName(@RequestParam(name = "name") String name) throws CityNotFoundException {
         City city = cityService.findCityByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -69,7 +69,7 @@ public class CityController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/update")
     public ResponseEntity<?> updateCity(@RequestBody City city) throws CityNotFoundException {
         cityService.updateCity(city);
         return new ResponseEntity<>(HttpStatus.OK);

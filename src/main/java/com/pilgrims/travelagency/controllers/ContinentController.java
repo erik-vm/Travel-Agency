@@ -8,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +21,7 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("/continent/{id}")
+@RequestMapping("/continent")
 public class ContinentController {
 
     @Autowired
@@ -35,7 +32,7 @@ public class ContinentController {
         return continentService.findAllContinents();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     ResponseEntity<?> findContinentById(@PathVariable UUID id) throws ContinentNotFoundException {
         Continent continent = continentService.findContinentById(id);
         HttpHeaders headers = new HttpHeaders();
@@ -44,9 +41,9 @@ public class ContinentController {
         return new ResponseEntity<>(continent, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/name/{id}")
-    ResponseEntity<?> findContinentByName(@PathVariable String continentName) throws ContinentNotFoundException {
-        Continent continent = continentService.findContinentByName(continentName);
+    @GetMapping("/find-by-name")
+    ResponseEntity<?> findContinentByName(@RequestParam(name = "name") String name) throws ContinentNotFoundException {
+        Continent continent = continentService.findContinentByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setDate(new Date().toInstant());

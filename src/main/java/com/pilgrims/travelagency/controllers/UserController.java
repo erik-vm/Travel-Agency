@@ -32,7 +32,7 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findUserById(@PathVariable UUID id) throws UserNotFoundException {
         User user = userService.findUserById(id);
 

@@ -21,7 +21,7 @@ import java.util.UUID;
  * @author Kimmo Pormann
  */
 @RestController
-@RequestMapping("/country/{id}")
+@RequestMapping("/country")
 public class CountryController {
 
     @Autowired
@@ -43,13 +43,9 @@ public class CountryController {
     }
 
 
-    @GetMapping("/continent/{id}")
-    public ResponseEntity<?> findCountryByContinent(@RequestBody Continent continent) throws CountryNotFoundException {
-        List<Country> list = countryService.findAllCountriesByContinent(continent);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(list, headers, HttpStatus.OK);
+    @PostMapping("/continent")
+    public List<Country> findCountryByContinent(@RequestBody Continent continent) throws CountryNotFoundException {
+        return countryService.findAllCountriesByContinent(continent);
     }
 
 

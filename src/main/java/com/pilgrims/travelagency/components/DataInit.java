@@ -57,7 +57,7 @@ public class DataInit {
     private Faker faker = new Faker();
 
     @PostConstruct
-    public void init() throws AuthorityNotFoundException, ContinentNotFoundException, HotelNotFoundException {
+    public void init() throws AuthorityNotFoundException, ContinentNotFoundException, HotelNotFoundException, CountryNotFoundException, CityNotFoundException, AirportNotFoundException {
 //        initAuthorityData();
 //        initUserData();
 //        populateDBWithUsers();
@@ -122,7 +122,7 @@ public class DataInit {
      */
 
     private void populateDBWithUsers() throws AuthorityNotFoundException {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 10; i++) {
             User user = new User();
             String firstName = faker.name().firstName();
             String lastName = faker.name().lastName();
@@ -277,7 +277,7 @@ public class DataInit {
         //For loops to create cities, giving random names with faker and assigning random country from lists.
 
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             City city = new City();
             city.setName(faker.address().cityName());
             city.setActive(true);
@@ -300,7 +300,7 @@ public class DataInit {
     }
 
     private void populateDBWithAirports() throws CityNotFoundException {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             Airport airport = new Airport();
             airport.setActive(true);
             airport.setName(faker.name().name() + " Airport");
@@ -310,7 +310,7 @@ public class DataInit {
     }
 
     private void populateDBWithHotels() throws CityNotFoundException {
-        for (int i = 0; i<100; i++){
+        for (int i = 0; i<20; i++){
             Hotel hotel = new Hotel();
             hotel.setName(faker.name().name() + " Hotel");
             hotel.setCity(cityService.findAllCities().get((int) Math.abs(Math.random() * cityService.findAllCities().size())));
@@ -333,7 +333,7 @@ public class DataInit {
     }
 
     private void populateDBWithTrips() throws HotelNotFoundException, AirportNotFoundException {
-        for (int i = 0; i<50; i++) {
+        for (int i = 0; i<10; i++) {
             Airport departureAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));
             Airport destinationAirport = airportService.findAllAirports().get((int) Math.abs(Math.random() * airportService.findAllAirports().size()));
             Trip trip = new Trip();

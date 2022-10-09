@@ -24,7 +24,7 @@ import java.util.UUID;
  * @author Ott Pikk
  */
 @RestController
-@RequestMapping("/hotel/{id}")
+@RequestMapping("/hotel")
 public class HotelController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class HotelController {
         return hotelService.findAllHotels();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findHotelById(@PathVariable UUID id) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelById(id);
 
@@ -45,27 +45,19 @@ public class HotelController {
         return new ResponseEntity<>(hotel, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/city/{id}")
-    public ResponseEntity<?> findHotelsByCity(@RequestBody City city) throws HotelNotFoundException {
-        List<Hotel> list = hotelService.findHotelsByCity(city);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(list, headers, HttpStatus.OK);
+    @PostMapping("/city")
+    public List<Hotel> findHotelsByCity(@RequestBody City city) throws HotelNotFoundException {
+       return hotelService.findHotelsByCity(city);
     }
 
 
-    @GetMapping("/{standard}")
-    public ResponseEntity<?> findHotelsByStandard(@PathVariable HotelStandard standard) throws HotelNotFoundException {
-        List<Hotel> list = hotelService.findHotelsByStandard(standard);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setDate(new Date().toInstant());
-        return new ResponseEntity<>(list, headers, HttpStatus.OK);
+    @GetMapping("/find-by-standard")
+    public List<Hotel> findHotelsByStandard(@RequestParam(name = "standard") HotelStandard standard) throws HotelNotFoundException {
+        return hotelService.findHotelsByStandard(standard);
     }
 
-    @GetMapping("/name/{id}")
-    public ResponseEntity<?> findHotelsByName(@PathVariable String name) throws HotelNotFoundException {
+    @GetMapping("/find-by-name")
+    public ResponseEntity<?> findHotelsByName(@RequestParam (name = "name") String name) throws HotelNotFoundException {
         Hotel hotel = hotelService.findHotelByName(name);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
