@@ -71,7 +71,7 @@ public class HotelController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/update")
     public ResponseEntity<?> updateHotel(@RequestBody Hotel hotel) throws HotelNotFoundException {
         hotelService.updateHotel(hotel);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -53,7 +53,6 @@ public class TripController {
     @PostMapping("/find-by-departure-city")
     public List<Trip> findTripByDepartureCity(@RequestBody City city) throws TripNotFoundException {
         return tripService.findByDepartureCity(city);
-
     }
 
     @PostMapping("/find-by-arrival-city")
@@ -61,12 +60,6 @@ public class TripController {
         return tripService.findByArrivalCity(city);
     }
 
-    @PostMapping("/find-by-dep&arrival-city")
-    public List<Trip> findTripByDepartureCityAndArrivalCity(
-            @RequestBody City departureCity,
-            @RequestBody City arrivalCity) throws TripNotFoundException {
-       return tripService.findByDepartureCityAndArrivalCity(departureCity, arrivalCity);
-    }
     @PostMapping("/find-by-departure-airport")
     public List<Trip> findTripByDepartureAirport(@RequestBody Airport airport) throws TripNotFoundException {
        return tripService.findByDepartureAirport(airport);
@@ -77,11 +70,6 @@ public class TripController {
         return tripService.findByArrivalAirport(airport);
     }
 
-    @PostMapping("/find-by-dep&arrival-airport")
-    public List<Trip> findTripByDepartureAirportAndArrivalAirport(@RequestBody Airport depAirport,
-                                                                  @RequestBody Airport arrivalAirport) throws TripNotFoundException {
-        return tripService.findByDepartureAirportAndArrivalAirport(depAirport, arrivalAirport);
-    }
 
 //    @GetMapping("/{duration}")
 //    public ResponseEntity<?> findTripByDuration(@PathVariable double duration) {
